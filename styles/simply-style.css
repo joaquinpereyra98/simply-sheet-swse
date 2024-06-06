@@ -1,0 +1,31 @@
+.simply-sheet .sheet-header .img-container img {
+    margin: 0;
+    border: 0;
+    height: auto;
+    flex: 1;
+}
+.simply-sheet .sheet-header .inputs-headers-container {
+    flex: 7;
+}
+.simply-sheet .sheet-header .inputs-headers-container .name-container h1.charname {
+    flex: 8
+}
+.simply-sheet .sheet-header .inputs-headers-container .name-container .level-container {
+    flex: 2;
+}
+.simply-sheet .sheet-header .inputs-headers-container .name-container .level-container input {
+    height: 48px;
+    font-size: xx-large;
+    text-align: center;
+}
+.simply-sheet .sheet-header .inputs-headers-container .name-container input {
+    font-size: larger;
+    padding: 5px;
+}
+.simply-sheet .labeled-input {
+    margin-top: -10px;
+}
+.simply-sheet input[type=text], .simply-sheet input[type=number], .simply-sheet select {
+    font-size: 1rem;
+    text-align: center;
+}

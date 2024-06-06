@@ -34,7 +34,5 @@
     "esmodules": [
         "src/simply-sheet-swase.mjs"
     ],
-    "style": [
-        "styles/style.css"
-    ]
+    "styles": ["/styles/simply-style.css"]
 }
