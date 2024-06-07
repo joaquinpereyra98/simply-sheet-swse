@@ -1,59 +1,134 @@
-<div class="ability-scores panel">
-    <div class="flex-row">
-        <div class="small">
-            {{#unless actor.system.lockAttributes}}
-            <div class="flex">
-                {{#ifEquals attrGen "Roll"}}
-                <div class="rollAbilities" title="Roll Abilities"><a><i class="fas fa-edit"></i></a></div>
-                {{/ifEquals}}
-                {{#ifEquals attrGen "Standard Array"}}
-                <div class="assignStandardArray" title="Assign Ability Scores"><a><i class="fas fa-edit"></i></a></div>
-                {{/ifEquals}}
-                {{#ifEquals attrGen "Point Buy"}}
-                <div class="assignAttributePoints" title="Assign Ability Points"><a><i class="fas fa-edit"></i></a>
+<div class="tab-summary">
+    <div class="flex-col left-column">
+        <div class="ability-scores panel">
+        <div class="labels-row flex-row">
+            <div class="label-row">
+                {{#unless actor.system.lockAttributes}}
+                <div class="flex">
+                    {{#ifEquals attrGen "Roll"}}
+                    <div class="rollAbilities" title="Roll Abilities"><a><i class="fas fa-edit"></i></a></div>
+                    {{/ifEquals}}
+                    {{#ifEquals attrGen "Standard Array"}}
+                    <div class="assignStandardArray" title="Assign Ability Scores"><a><i class="fas fa-edit"></i></a>
+                    </div>
+                    {{/ifEquals}}
+                    {{#ifEquals attrGen "Point Buy"}}
+                    <div class="assignAttributePoints" title="Assign Ability Points"><a><i class="fas fa-edit"></i></a>
+                    </div>
+                    {{/ifEquals}}
+                    {{#unlessEquals attrGen "Manual"}}
+                    {{#each actor.system.levelAttributeBonus as |bonus key|}}
+                    {{#if bonus}}
+                    <div class="leveledAttributeBonus  {{#if bonus.warn}}warning{{/if}}" data-level="{{key}}"
+                        title="Select Level Up Attribute Bonus for Level {{key}}"><a><i
+                                class="fas fa-exclamation"></i></a>
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                    {{/unlessEquals}}
                 </div>
-                {{/ifEquals}}
-                {{#unlessEquals attrGen "Manual"}}
-                {{#each actor.system.levelAttributeBonus as |bonus key|}}
-                {{#if bonus}}
-                <div class="leveledAttributeBonus  {{#if bonus.warn}}warning{{/if}}" data-level="{{key}}"
-                    title="Select Level Up Attribute Bonus for Level {{key}}"><a><i class="fas fa-exclamation"></i></a>
+                {{/unless}}
+            </div>
+            <div class="label-row small-header">Score</div>
+            <div class="label-row small-header">Temp</div>
+            <div class="label-row small-header">Mod</div>
+        </div>
+        {{#each abilities as |attribute key|}}
+        <div class="draggable flex-row" data-label="{{attribute.label}}" data-variable="@{{attribute.label}}ROLL"
+            data-type="ability">
+            <div class="rollable unlabeled-input">
+                <input class="input rollable ability-label" type="text" value="{{attribute.label}}" disabled
+                    title="Roll 1d20 + {{attribute.roll}}" data-label="{{attribute.label}}"
+                    data-roll="1d20 + {{attribute.roll}}" />
+            </div>
+            <div class="unlabeled-input">
+                <input class="input" type="text" value="{{attribute.total}}" placeholder="0"
+                    name="system.attributes.{{key}}.manual" {{#unlessEquals ../attrGen "Manual"
+                    }}disabled{{/unlessEquals}} />
+            </div>
+            <div class="unlabeled-input">
+                <input class="input" type="text" value="{{attribute.customBonus}}"
+                    name="system.attributes.{{key}}.customBonus" />
+            </div>
+            <div class="unlabeled-input">
+                <input class="input" type="text" value="{{attribute.roll}}" disabled />
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    </div>   
+    <div class="flex-col middle-column">
+        <div class="hit-point panel">
+            <label class="medium-header">Hit Points</label>
+            <div class="flex-row">
+                <div class="flex-col">
+                    <label class="small-header">Current</label>
+                    <div class="unlabeled-input">
+                        <input class="left-input" id="currentHealth" type="number" name="system.health.value"
+                            value="{{actor.health.value}}" data-dtype="Number" />
+                    </div>
                 </div>
-                {{/if}}
-                {{/each}}
-                {{/unlessEquals}}
+                <div class="divider"></div>
+                <div class="flex-col">
+                    <label class="small-header">Max</label>
+                    <div class="unlabeled-input numeric-override" data-override="{{actor.health.override}}"
+                        data-override-name="Total Health" data-override-key="system.health.override">
+                        <input class="right-input" id="maxHealth" type="text" value="{{actor.health.max}}" disabled />
+                    </div>
+                </div>
             </div>
-            {{/unless}}
-        </div>
-        <div class="small small-header">Score</div>
-        <div class="small small-header">Temp</div>
-        <div class="small small-header">Mod</div>
-    </div>
-    {{#each abilities as |attribute key|}}
-    <div class="draggable flex-row" data-label="{{attribute.label}}" data-variable="@{{attribute.label}}ROLL"
-        data-type="ability">
-        <div class="rollable small unlabeled-input">
-            <div class="ability-label rollable" title="Roll 1d20 + {{attribute.roll}}" data-label="{{attribute.label}}"
-                data-roll="1d20 + {{attribute.roll}}">
-                {{attribute.label}}
+            <div class="flex-col">
+                <label for="secondWind" class="small-header"
+                    title="Regardless of second winds per day, only one can be used per encounter.">
+                    Second Winds
+                </label>
+                <div class="unlabeled-input ">
+                    <input id="secondWind" type="text" disabled />
+                    {{#times actor.system.secondWind.perDay}}
+                    <input class="left-control-{{this}}" data-action="toggle-second-wind" type="checkbox"
+                        data-name="system.secondWind.toggles.{{this}}" {{#if (lookup ../actor.system.secondWind.toggles
+                        this)}}checked{{/if}}>
+                    {{/times}}
+                </div>
             </div>
-
         </div>
-        <div class="small unlabeled-input">
-            <input class="input" type="text" value="{{attribute.total}}" placeholder="0"
-                name="system.attributes.{{key}}.manual" {{#unlessEquals ../attrGen "Manual"
-                }}disabled{{/unlessEquals}} />
-        </div>
-        <div class="small unlabeled-input">
-            <input class="input" type="text" value="{{attribute.customBonus}}"
-                name="system.attributes.{{key}}.customBonus" />
-        </div>
-        <div class="small unlabeled-input">
-            <input class="input" type="text" value="{{attribute.roll}}" disabled />
+        <div class="threshold panel">
+            <label class="medium-header">Damage Threshold</label>
+            <div class="flex-row">
+                <div class="flex-col" {{!--Threshold Total --}}>
+                    <div class="small-header">Total</div>
+                    <div class="unlabeled-input">
+                        <input class="left-input" id="damageThreshold" type="text"
+                            value="{{actor.system.defense.damageThreshold.total}}" disabled />
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="flex-col" {{!--Fortitude --}}>
+                    <div class="small-header">Fortitude</div>
+                    <div class="unlabeled-input">
+                        <input class="middle-input" id="dtFort" type="text"
+                            value="{{actor.system.defense.fortitude.total}}" disabled />
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="flex-col" {{!--Misc Mod --}}>
+                    <div class="small-header">Misc.Mod</div>
+                    <div class="unlabeled-input">
+                        <input class="right-input" id="dtMisc" type="number" name="system.defense.damageThreshold.misc"
+                            value="{{actor.system.defense.damageThreshold.misc}}" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex-col" {{!--Damage Reduction --}}>
+                <label class="small-header">Damage Reduction</label>
+                <div class="unlabeled-input">
+                    <input class="" id="damageReduction" type="text" value="{{actor.system.defense.damageReduction}}"
+                        disabled />
+                </div>
+            </div>
         </div>
     </div>
-    {{/each}}
-</div>
-<div class="hit-point panel">
+    <div class="flex-col right-column">
 
+    </div>
 </div>

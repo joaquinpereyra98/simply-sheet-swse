@@ -1,3 +1,26 @@
+/*
+* Simply Sheet Global
+*/
+.simply-sheet .labeled-input {
+    margin-top: -10px;
+}
+.simply-sheet input[type=text], .simply-sheet input[type=number], .simply-sheet select {
+    font-size: 1rem;
+    text-align: center;
+}
+.simply-sheet .unlabeled-input {
+    padding: 0;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    position: relative;
+}
+.simply-sheet .unlabeled-input input {
+    padding: 0;
+}
+/*
+* Simply Sheet Header
+*/
 .simply-sheet .sheet-header .img-container img {
     margin: 0;
     border: 0;
@@ -22,38 +45,15 @@
     font-size: larger;
     padding: 5px;
 }
-.simply-sheet .labeled-input {
-    margin-top: -10px;
+.simply-sheet .tab-summary {
+    display: flex;
+    align-items: flex-start;
 }
-.simply-sheet input[type=text], .simply-sheet input[type=number], .simply-sheet select {
-    font-size: 1rem;
-    text-align: center;
-}
-.simply-sheet .ability-mod {
+.simply-sheet .tab-summary .ability-scores .labels-row div.label-row {
     flex: 1;
-    margin-left: 2px;
-    margin-right: 2px;
-}
-
-.simply-sheet .unlabeled-input {
-    padding: 0;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-    position: relative;
-}
-.simply-sheet .unlabeled-input input.input {
-    padding: 0;
 }
 .simply-sheet .unlabeled-input .ability-label{
     text-align: center;
     font-weight: bold;
     font-size: 18px;
-    border: 2px var(--color-foreground) solid;
-    border-radius: 10px;
-    color: var(--color-text-dark-primary);
-    background: var(--color-background);
-}
-.ability-scores.panel,.hit-point.panel{
-    width: 40%;
 }
