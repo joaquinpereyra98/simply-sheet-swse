@@ -25,7 +25,13 @@ export class SimplySWSEActorSheet extends SWSEActorSheet {
   }
   async getData() {
     const context = super.getData();
-    console.log(context)
+    this.prepareAttributes(context)
+    return context
+  }
+  prepareAttributes(context){
+    const system = context.actor.system;
+    context.abilities =  Object.fromEntries(Object.entries(system.attributes).filter(([key, value]) => value.skip === false));;
+    context.attrGen = system.finalAttributeGenerationType;
     return context
   }
 }

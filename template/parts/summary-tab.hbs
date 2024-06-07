@@ -3,17 +3,17 @@
         <div class="small">
             {{#unless actor.system.lockAttributes}}
             <div class="flex">
-                {{#ifEquals actor.system.finalAttributeGenerationType "Roll"}}
+                {{#ifEquals attrGen "Roll"}}
                 <div class="rollAbilities" title="Roll Abilities"><a><i class="fas fa-edit"></i></a></div>
                 {{/ifEquals}}
-                {{#ifEquals actor.system.finalAttributeGenerationType "Standard Array"}}
+                {{#ifEquals attrGen "Standard Array"}}
                 <div class="assignStandardArray" title="Assign Ability Scores"><a><i class="fas fa-edit"></i></a></div>
                 {{/ifEquals}}
-                {{#ifEquals actor.system.finalAttributeGenerationType "Point Buy"}}
+                {{#ifEquals attrGen "Point Buy"}}
                 <div class="assignAttributePoints" title="Assign Ability Points"><a><i class="fas fa-edit"></i></a>
                 </div>
                 {{/ifEquals}}
-                {{#unlessEquals actor.system.finalAttributeGenerationType "Manual"}}
+                {{#unlessEquals attrGen "Manual"}}
                 {{#each actor.system.levelAttributeBonus as |bonus key|}}
                 {{#if bonus}}
                 <div class="leveledAttributeBonus  {{#if bonus.warn}}warning{{/if}}" data-level="{{key}}"
@@ -29,36 +29,31 @@
         <div class="small small-header">Temp</div>
         <div class="small small-header">Mod</div>
     </div>
-    {{#each actor.system.attributes as |attribute id|}}
-    {{#unless attribute.skip}}
+    {{#each abilities as |attribute key|}}
     <div class="draggable flex-row" data-label="{{attribute.label}}" data-variable="@{{attribute.label}}ROLL"
         data-type="ability">
         <div class="rollable small unlabeled-input">
             <div class="ability-label rollable" title="Roll 1d20 + {{attribute.roll}}" data-label="{{attribute.label}}"
                 data-roll="1d20 + {{attribute.roll}}">
-
                 {{attribute.label}}
-
             </div>
 
         </div>
         <div class="small unlabeled-input">
             <input class="input" type="text" value="{{attribute.total}}" placeholder="0"
-                name="system.attributes.{{id}}.manual" {{#unlessEquals
-                ../actor.system.finalAttributeGenerationType "Manual" }}disabled{{/unlessEquals}} />
+                name="system.attributes.{{key}}.manual" {{#unlessEquals ../attrGen "Manual"
+                }}disabled{{/unlessEquals}} />
         </div>
         <div class="small unlabeled-input">
             <input class="input" type="text" value="{{attribute.customBonus}}"
-                name="system.attributes.{{id}}.customBonus" />
+                name="system.attributes.{{key}}.customBonus" />
         </div>
         <div class="small unlabeled-input">
             <input class="input" type="text" value="{{attribute.roll}}" disabled />
         </div>
     </div>
-    {{/unless}}
     {{/each}}
-
 </div>
 <div class="hit-point panel">
-    
+
 </div>
