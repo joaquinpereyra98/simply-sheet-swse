@@ -23,15 +23,25 @@ export class SimplySWSEActorSheet extends SWSEActorSheet {
     }
     return super.template;
   }
+   /** @override */
   async getData() {
     const context = super.getData();
     this.prepareAttributes(context)
     return context
   }
+   /** @override */
   prepareAttributes(context){
     const system = context.actor.system;
     context.abilities =  Object.fromEntries(Object.entries(system.attributes).filter(([key, value]) => value.skip === false));;
     context.attrGen = system.finalAttributeGenerationType;
     return context
+  }
+   /** @override */
+  activateListeners(html){
+    super.activateListeners(html)
+
+    html.find('.dark-score-btn').click(ev => {
+      this.actor.darkSideScore = $(ev.currentTarget).data("value");
+  });
   }
 }

@@ -1,62 +1,121 @@
 <div class="tab-summary">
     <div class="flex-col left-column">
         <div class="ability-scores panel">
-        <div class="labels-row flex-row">
-            <div class="label-row">
-                {{#unless actor.system.lockAttributes}}
-                <div class="flex">
-                    {{#ifEquals attrGen "Roll"}}
-                    <div class="rollAbilities" title="Roll Abilities"><a><i class="fas fa-edit"></i></a></div>
-                    {{/ifEquals}}
-                    {{#ifEquals attrGen "Standard Array"}}
-                    <div class="assignStandardArray" title="Assign Ability Scores"><a><i class="fas fa-edit"></i></a>
+            <label class="medium-header">Abilities Scores</label>
+            <div class="labels-row flex-row">
+                <div class="label-row">
+                    {{#unless actor.system.lockAttributes}}
+                    <div class="flex">
+                        {{#ifEquals attrGen "Roll"}}
+                        <div class="rollAbilities" title="Roll Abilities"><a><i class="fas fa-edit"></i></a></div>
+                        {{/ifEquals}}
+                        {{#ifEquals attrGen "Standard Array"}}
+                        <div class="assignStandardArray" title="Assign Ability Scores"><a><i
+                                    class="fas fa-edit"></i></a>
+                        </div>
+                        {{/ifEquals}}
+                        {{#ifEquals attrGen "Point Buy"}}
+                        <div class="assignAttributePoints" title="Assign Ability Points"><a><i
+                                    class="fas fa-edit"></i></a>
+                        </div>
+                        {{/ifEquals}}
+                        {{#unlessEquals attrGen "Manual"}}
+                        {{#each actor.system.levelAttributeBonus as |bonus key|}}
+                        {{#if bonus}}
+                        <div class="leveledAttributeBonus  {{#if bonus.warn}}warning{{/if}}" data-level="{{key}}"
+                            title="Select Level Up Attribute Bonus for Level {{key}}"><a><i
+                                    class="fas fa-exclamation"></i></a>
+                        </div>
+                        {{/if}}
+                        {{/each}}
+                        {{/unlessEquals}}
                     </div>
-                    {{/ifEquals}}
-                    {{#ifEquals attrGen "Point Buy"}}
-                    <div class="assignAttributePoints" title="Assign Ability Points"><a><i class="fas fa-edit"></i></a>
-                    </div>
-                    {{/ifEquals}}
-                    {{#unlessEquals attrGen "Manual"}}
-                    {{#each actor.system.levelAttributeBonus as |bonus key|}}
-                    {{#if bonus}}
-                    <div class="leveledAttributeBonus  {{#if bonus.warn}}warning{{/if}}" data-level="{{key}}"
-                        title="Select Level Up Attribute Bonus for Level {{key}}"><a><i
-                                class="fas fa-exclamation"></i></a>
-                    </div>
-                    {{/if}}
-                    {{/each}}
-                    {{/unlessEquals}}
+                    {{/unless}}
                 </div>
-                {{/unless}}
+                <div class="label-row small-header">Score</div>
+                <div class="label-row small-header">Temp</div>
+                <div class="label-row small-header">Mod</div>
             </div>
-            <div class="label-row small-header">Score</div>
-            <div class="label-row small-header">Temp</div>
-            <div class="label-row small-header">Mod</div>
+            {{#each abilities as |attribute key|}}
+            <div class="draggable flex-row" data-label="{{attribute.label}}" data-variable="@{{attribute.label}}ROLL"
+                data-type="ability">
+                <div class="rollable unlabeled-input">
+                    <input class="input rollable ability-label" type="text" value="{{attribute.label}}" disabled
+                        title="Roll 1d20 + {{attribute.roll}}" data-label="{{attribute.label}}"
+                        data-roll="1d20 + {{attribute.roll}}" />
+                </div>
+                <div class="unlabeled-input">
+                    <input class="input" type="text" value="{{attribute.total}}" placeholder="0"
+                        name="system.attributes.{{key}}.manual" {{#unlessEquals ../attrGen "Manual"
+                        }}disabled{{/unlessEquals}} />
+                </div>
+                <div class="unlabeled-input">
+                    <input class="input" type="text" value="{{attribute.customBonus}}"
+                        name="system.attributes.{{key}}.customBonus" />
+                </div>
+                <div class="unlabeled-input">
+                    <input class="input" type="text" value="{{attribute.roll}}" disabled />
+                </div>
+            </div>
+            {{/each}}
         </div>
-        {{#each abilities as |attribute key|}}
-        <div class="draggable flex-row" data-label="{{attribute.label}}" data-variable="@{{attribute.label}}ROLL"
-            data-type="ability">
-            <div class="rollable unlabeled-input">
-                <input class="input rollable ability-label" type="text" value="{{attribute.label}}" disabled
-                    title="Roll 1d20 + {{attribute.roll}}" data-label="{{attribute.label}}"
-                    data-roll="1d20 + {{attribute.roll}}" />
+        <div class="defence panel">
+            <label class="medium-header">
+                Defense
+                <a data-action="to-chat" data-action-type="defense" title="Share"><i
+                        class="fa-solid fa-comment"></i></a>
+            </label>
+            {{#each actor.system.defense as |def id|}}
+            {{#unless def.skip}}
+            {{#if def.defenseBlock}}
+            <div class="defense-block">
+                <div class="flex-col">
+                    <label class="small-header">{{toTitleCase def.name}}</label>
+                    <div class="unlabeled-input numeric-override" data-override="{{def.override}}"
+                        data-override-name="{{def.name}}"
+                        data-override-key="system.defense.{{toLowercase def.name}}.override">
+                        <input class="input" type="text" value="{{def.total}}" name="system.attributes.{{id}}.manual"
+                            disabled />
+                    </div>
+                </div>
+                <div class="flex-row flex-end">
+                    <div class="flex-col">
+                        <label class="small-header">Base</label>
+                        <div class="unlabeled-input">
+                            <input class="input" type="text" value="10" disabled />
+                        </div>
+                    </div>
+                    <div class="flex-col">
+                        <label class="small-header">Level Armor</label>
+                        <div class="unlabeled-input">
+                            <input class="input" type="text" value="{{def.armorBonus}}" disabled />
+                        </div>
+                    </div>
+                    <div class="flex-col">
+                        <label class=" small-header">Ability</label>
+                        <div class="unlabeled-input">
+                            <input class="input" type="text" value="{{def.abilityBonus}}" disabled />
+                        </div>
+                    </div>
+                    <div class="flex-col">
+                        <label class=" small-header">Class</label>
+                        <div class="unlabeled-input">
+                            <input class="input" type="text" value="{{def.classBonus}}" disabled />
+                        </div>
+                    </div>
+                    <div class="flex-col">
+                        <label class=" small-header">Misc</label>
+                        <div class="unlabeled-input" title="{{def.miscBonusTip}}">
+                            <input class="input" type="text" value="{{def.miscBonus}}" disabled />
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="unlabeled-input">
-                <input class="input" type="text" value="{{attribute.total}}" placeholder="0"
-                    name="system.attributes.{{key}}.manual" {{#unlessEquals ../attrGen "Manual"
-                    }}disabled{{/unlessEquals}} />
-            </div>
-            <div class="unlabeled-input">
-                <input class="input" type="text" value="{{attribute.customBonus}}"
-                    name="system.attributes.{{key}}.customBonus" />
-            </div>
-            <div class="unlabeled-input">
-                <input class="input" type="text" value="{{attribute.roll}}" disabled />
-            </div>
+            {{/if}}
+            {{/unless}}
+            {{/each}}
         </div>
-        {{/each}}
     </div>
-    </div>   
     <div class="flex-col middle-column">
         <div class="hit-point panel">
             <label class="medium-header">Hit Points</label>
@@ -126,9 +185,187 @@
                         disabled />
                 </div>
             </div>
+            <div class="flex-col">
+                <label class="small-header" for="baseAttack">
+                    Base Attack
+                    <span class="control-0">
+                        <a class="rollable" title="Roll 1d20 + {{actor.baseAttackBonus}}"
+                            data-roll="1d20 + {{actor.baseAttackBonus}}"><i class="fas fa-dice-d20"></i></a>
+                    </span>
+                </label>
+                <div class="unlabeled-input flex-row">
+                    <input id="baseAttack" type="text" value="{{actor.baseAttackBonus}}" disabled />
+                </div>
+            </div>
+            <div class="flex-col">
+                <label class="small-header" for="grapple">
+                    Grapple Bonus
+                    <span class="control-0">
+                        <a class="rollable" title="Roll 1d20 + {{actor.grapple}}"
+                            data-roll="1d20 + {{actor.grapple}}"><i class="fas fa-dice-d20"></i></a>
+                    </span>
+                </label>
+                <div class="unlabeled-input flex-row">
+                    <input id="grapple" type="text" value="{{actor.grapple}}" disabled />
+                </div>
+            </div>
+        </div>
+        <div class="dark-side-score panel">
+            <label class="medium-header">Dark Side Score</label>
+            <div class="grid dack-score-grid">
+                {{#each actor.system.darkSideArray as |value|}}
+                <div class="dark-score-btn {{ifThen value.active " active" "" }}" data-value="{{value.value}}">
+                    {{value.value}}</div>
+                {{/each}}
+            </div>
         </div>
     </div>
     <div class="flex-col right-column">
-
+        <div class="speed panel">
+            <div class="flex-col">
+                <label class="medium-header" for="dtMisc">Speed</label>
+                <div class="unlabeled-input">
+                    <input id="dtMisc" type="text" value="{{actor.speed}}" disabled />
+                </div>
+            </div>
+        </div>
+        <div class="points panel">
+            <label class="medium-header">Force Points</label>
+            <div class="flex-col">
+                <div class="unlabeled-input">
+                    <input class="plain" type="number" name="system.forcePoints" value="{{actor.system.forcePoints}}"
+                        data-dtype="Number" />
+                </div>
+            </div>
+            <label class="medium-header">Destiny Points</label>
+            <div class="flex-col">
+                <div class="unlabeled-input">
+                    <input class="plain" type="number" name="system.destinyPoints"
+                        value="{{actor.system.destinyPoints}}" data-dtype="Number" />
+                </div>
+            </div>
+        </div>
+        <div class="shields panel">
+            <label class="medium-header">Shield</label>
+            <div class="flex-row">
+                <div class="flex-col">
+                    <label class="small-header">Current</label>
+                    <div class="unlabeled-input">
+                        <input class="left-input" id="currentShield" type="number" name="system.shields.value"
+                            value="{{actor.system.shields.value}}" data-dtype="Number" />
+                        <div class="flex-row">
+                            <div class="control-2"
+                                title="Toggle Shield {{#if actor.system.shields.active}}Off{{else}}On{{/if}}"><a
+                                    data-action="shield" data-action-type="toggle"
+                                    class="{{#if actor.system.shields.active}}cursor{{/if}}"><i
+                                        class="fas fa-shield-virus"></i></a></div>
+                            <div class="control-1" title="Shield +5"><a data-action="shield" data-action-type="plus"><i
+                                        class="fas fa-plus"></i></a></div>
+                            <div class="control-0" title="Shield -5"><a data-action="shield" data-action-type="minus"><i
+                                        class="fas fa-minus"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                {{#if actor.system.shields.failureChance}}
+                <div class="flex-col">
+                    <label class="small-header">Failure Chance</label>
+                    <div class="unlabeled-input">
+                        <input class="middle-input" id="failureChance" type="text"
+                            value="{{actor.system.defense.fort.total}}" disabled />
+                    </div>
+                </div>
+                <div class="divider"></div>
+                {{/if}}
+                <div class="flex-col">
+                    <label class="small-header">Total</label>
+                    <div class="unlabeled-input">
+                        <input class="right-input" id="maxShields" type="text" value="{{actor.system.shields.max}}"
+                            disabled />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="condition panel">
+            <label class="medium-header">Condition</label>
+            <div class="flex-col">
+                <table class="resource-table">
+                    <thead>
+                        <tr>
+                            <th>-</th>
+                            <th>-1</th>
+                            <th>-2</th>
+                            <th>-5</th>
+                            <th>-10</th>
+                            <th>Out</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {{#radio actor.system.condition}}
+                            <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                        value="0" /></label></td>
+                            <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                        value="-1" /></label></td>
+                            <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                        value="-2" /></label></td>
+                            <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                        value="-5" /></label></td>
+                            <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                        value="-10" /></label></td>
+                            <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                        value="OUT" /></label></td>
+                            {{/radio}}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="gravity panel">
+            <label class="medium-header"> Gravity</label>
+            <div class="flex-col">
+                <table class="resource-table">
+                    <thead>
+                        <tr>
+                            <th>Normal</th>
+                            <th>High</th>
+                            <th>Low</th>
+                            <th>Zero</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {{#radio actor.system.gravity}}
+                            <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
+                                        value="Normal" /></label></td>
+                            <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
+                                        value="High" /></label></td>
+                            <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
+                                        value="Low" /></label></td>
+                            <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
+                                        value="Zero" /></label></td>
+                            {{/radio}}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
+{{!-- TEMPLATE //TODO delete
+<div class="flex-col right-column">
+    <div class="shields panel">
+        <label class="medium-header"> </label>
+        <div class="flex-col">
+
+        </div>
+    </div>
+</div>
+
+<div class="flex-col">
+    <label class="small-header"> </label>
+    <div class="unlabeled-input">
+        <input />
+    </div>
+</div>
+--}}

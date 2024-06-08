@@ -48,12 +48,67 @@
 .simply-sheet .tab-summary {
     display: flex;
     align-items: flex-start;
+    justify-content: space-around;
 }
-.simply-sheet .tab-summary .ability-scores .labels-row div.label-row {
+.simply-sheet .tab-summary .left-column {
+    width: 43%;
+}
+.simply-sheet .tab-summary .middle-column,
+ .simply-sheet .tab-summary .right-column {
+    width: 33%;
+}
+.simply-sheet .labels-row div.label-row {
     flex: 1;
 }
-.simply-sheet .unlabeled-input .ability-label{
+.simply-sheet .unlabeled-input .ability-label,
+.simply-sheet .unlabeled-input .defence-label{
     text-align: center;
     font-weight: bold;
     font-size: 18px;
+}
+.simply-sheet .tab-summary .resource-table {
+    border-spacing: 0;
+    border-collapse: separate;
+    border-radius: 10px;
+    border: 2px solid var(--color-foreground);
+    overflow: hidden;
+    margin: 1px 0;
+}
+.simply-sheet .tab-summary .resource-table thead {
+    background-color: var(--color-foreground);
+    font-size: small;
+}
+.simply-sheet .tab-summary .resource-table tbody {
+    background-color: var(--color-background);
+}
+.simply-sheet .tab-summary .resource-table tbody input{
+    margin: 0 1px
+}
+.simply-sheet .tab-summary .dack-score-grid {
+    gap: 4px;
+    margin: 5px 0;
+    grid-column: span 6 / span 6;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.simply-sheet .tab-summary .dark-score-btn {
+    background-color: #a4a8c5;
+    color: white;
+    font-weight: bold;
+    padding: 0.5em 0;
+    text-align: center;
+    font-size: medium;
+    border-radius: 5px;
+    text-shadow: 2px 1px var(--color-shadow-dark);
+    cursor: pointer;
+}
+.simply-sheet .tab-summary .dark-score-btn.active {
+    background-color: #f44336;
+}
+.simply-sheet .tab-summary .defence.panel .flex-end{
+    align-items: flex-end;
+}
+.simply-sheet .tab-summary .defence.panel .defense-block {
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 2px solid #424ca491;
 }
