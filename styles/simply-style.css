@@ -99,7 +99,7 @@
     font-size: 18px;
 }
 
-.simply-sheet .tab-summary .resource-table {
+.simply-sheet .resource-table {
     border-spacing: 0;
     border-collapse: separate;
     border-radius: 10px;
@@ -108,24 +108,24 @@
     margin: 1px 0;
 }
 
-.simply-sheet .tab-summary .resource-table thead {
+.simply-sheet .resource-table thead {
     background-color: var(--color-foreground);
     font-size: small;
 }
 
-.simply-sheet .tab-summary .resource-table tbody {
+.simply-sheet .resource-table tbody {
     background-color: var(--color-background);
 }
 
-.simply-sheet .tab-summary .resource-table tbody input {
+.simply-sheet .resource-table tbody input {
     margin: 0 1px
 }
 
-.simply-sheet .tab-summary .resource-table .row-attribute-table:hover {
+.simply-sheet .resource-table .row-attribute-table:hover {
     background-color: #d1d1d1;
 }
 
-.simply-sheet .tab-summary .resource-table td.label-cell {
+.simply-sheet .resource-table td.label-cell {
     display: flex;
     align-items: center;
     font-weight: bold;
@@ -203,4 +203,8 @@
 
 .simply-sheet .tab-summary .attack-table .btn-roll-attack:hover {
     text-shadow: 0 0 10px var(--color-shadow-primary);
+}
+.simply-sheet .tab-features .class-table .item-controls .grid {
+    gap: 0;
+    margin: 0;
 }

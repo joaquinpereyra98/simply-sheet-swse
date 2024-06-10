@@ -1,0 +1,37 @@
+<div class="feats panel">
+    <div class="flex-col">
+        <div class="flex flex-between">
+            <label class="medium-header padding-3">Feats</label>
+            <div class="headers-buttons flex-row flex-between padding-3">
+                <a data-action="compendium" data-type="Item" data-filter="-type:feat" title="{{localize " Open
+                    Compendium"}}"><i class="fas fa-folder-plus"></i></a>
+            </div>
+        </div>
+        <table class="class-table resource-table">
+            {{#each actor.feats as |item id|}}
+            <tbody>
+                <tr class="row-attribute-table item" data-item-id="{{item.id}}">
+                    <td class="label-item">
+                        <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+                        <label class="item-name">{{item.name}}</label>
+                    </td>
+                    <td class="item-controls">
+                        <a data-action="view" class="item-control" title="Edit Item"><i class="fas fa-edit"></i></a>
+                        {{#if actor.system.ignorePrerequisites}}
+                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                        {{else}}
+                        {{#if item.system.supplier.id}}
+                        {{#if item.system.supplier.unlocked}}
+                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                        {{/if}}
+                        {{else}}
+                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                        {{/if}}
+                        {{/if}}
+                    </td>
+                </tr>
+            </tbody>
+            {{/each}}
+        </table>
+    </div>
+</div>

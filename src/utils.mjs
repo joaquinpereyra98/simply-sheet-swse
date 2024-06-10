@@ -2,6 +2,7 @@ export async function prepareTemplates(){
     return loadTemplates([
         "modules/simply-sheet-swse/template/parts/summary-tab.hbs",
         "modules/simply-sheet-swse/template/parts/sheet-header.hbs",
+        "modules/simply-sheet-swse/template/parts/features-tab.hbs",
         "modules/simply-sheet-swse/template/parts/summary-tab-parts/ability-score-panel.hbs",
         "modules/simply-sheet-swse/template/parts/summary-tab-parts/defence-panel.hbs",
         "modules/simply-sheet-swse/template/parts/summary-tab-parts/hit-point-panel.hbs",
@@ -14,6 +15,8 @@ export async function prepareTemplates(){
         "modules/simply-sheet-swse/template/parts/summary-tab-parts/skills-panel.hbs",
         "modules/simply-sheet-swse/template/parts/summary-tab-parts/dark-side-score-panel.hbs",
         "modules/simply-sheet-swse/template/parts/summary-tab-parts/armor-panel.hbs",
-        "modules/simply-sheet-swse/template/parts/summary-tab-parts/attacks-panel.hbs"
+        "modules/simply-sheet-swse/template/parts/summary-tab-parts/attacks-panel.hbs",
+        "modules/simply-sheet-swse/template/parts/features-tab-parts/class-panel.hbs",
+        "modules/simply-sheet-swse/template/parts/features-tab-parts/feats-panel.hbs"
     ])
 }
