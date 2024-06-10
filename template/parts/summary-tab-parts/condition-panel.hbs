@@ -1,0 +1,35 @@
+<div class="condition panel">
+    <label class="medium-header">Condition</label>
+    <div class="flex-col">
+        <table class="resource-table">
+            <thead>
+                <tr>
+                    <th>-</th>
+                    <th>-1</th>
+                    <th>-2</th>
+                    <th>-5</th>
+                    <th>-10</th>
+                    <th>Out</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {{#radio actor.system.condition}}
+                    <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                value="0" /></label></td>
+                    <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                value="-1" /></label></td>
+                    <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                value="-2" /></label></td>
+                    <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                value="-5" /></label></td>
+                    <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                value="-10" /></label></td>
+                    <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                value="OUT" /></label></td>
+                    {{/radio}}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

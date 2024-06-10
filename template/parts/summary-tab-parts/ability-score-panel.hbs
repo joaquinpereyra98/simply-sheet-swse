@@ -1,0 +1,56 @@
+<div class="ability-scores panel">
+    <label class="medium-header">Abilities Scores</label>
+    <div class="labels-row flex-row">
+        <div class="label-row">
+            {{#unless actor.system.lockAttributes}}
+            <div class="flex">
+                {{#ifEquals attrGen "Roll"}}
+                <div class="rollAbilities" title="Roll Abilities"><a><i class="fas fa-edit"></i></a></div>
+                {{/ifEquals}}
+                {{#ifEquals attrGen "Standard Array"}}
+                <div class="assignStandardArray" title="Assign Ability Scores"><a><i class="fas fa-edit"></i></a>
+                </div>
+                {{/ifEquals}}
+                {{#ifEquals attrGen "Point Buy"}}
+                <div class="assignAttributePoints" title="Assign Ability Points"><a><i class="fas fa-edit"></i></a>
+                </div>
+                {{/ifEquals}}
+                {{#unlessEquals attrGen "Manual"}}
+                {{#each actor.system.levelAttributeBonus as |bonus key|}}
+                {{#if bonus}}
+                <div class="leveledAttributeBonus  {{#if bonus.warn}}warning{{/if}}" data-level="{{key}}"
+                    title="Select Level Up Attribute Bonus for Level {{key}}"><a><i class="fas fa-exclamation"></i></a>
+                </div>
+                {{/if}}
+                {{/each}}
+                {{/unlessEquals}}
+            </div>
+            {{/unless}}
+        </div>
+        <div class="label-row small-header">Score</div>
+        <div class="label-row small-header">Temp</div>
+        <div class="label-row small-header">Mod</div>
+    </div>
+    {{#each abilities as |attribute key|}}
+    <div class="draggable flex-row" data-label="{{attribute.label}}" data-variable="@{{attribute.label}}ROLL"
+        data-type="ability">
+        <div class="rollable unlabeled-input">
+            <input class="input rollable ability-label" type="text" value="{{attribute.label}}" disabled
+                title="Roll 1d20 + {{attribute.roll}}" data-label="{{attribute.label}}"
+                data-roll="1d20 + {{attribute.roll}}" />
+        </div>
+        <div class="unlabeled-input">
+            <input class="input" type="text" value="{{attribute.total}}" placeholder="0"
+                name="system.attributes.{{key}}.manual" {{#unlessEquals ../attrGen "Manual"
+                }}disabled{{/unlessEquals}} />
+        </div>
+        <div class="unlabeled-input">
+            <input class="input" type="text" value="{{attribute.customBonus}}"
+                name="system.attributes.{{key}}.customBonus" />
+        </div>
+        <div class="unlabeled-input">
+            <input class="input" type="text" value="{{attribute.roll}}" disabled />
+        </div>
+    </div>
+    {{/each}}
+</div>

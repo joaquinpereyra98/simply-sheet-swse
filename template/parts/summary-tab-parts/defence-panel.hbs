@@ -1,0 +1,54 @@
+<div class="defence panel">
+    <label class="medium-header">
+        Defense
+        <a data-action="to-chat" data-action-type="defense" title="Share"><i class="fa-solid fa-comment"></i></a>
+    </label>
+    {{#each actor.system.defense as |def id|}}
+    {{#unless def.skip}}
+    {{#if def.defenseBlock}}
+    <div class="defense-block">
+        <div class="flex-col">
+            <label class="small-header">{{toTitleCase def.name}}</label>
+            <div class="unlabeled-input numeric-override" data-override="{{def.override}}"
+                data-override-name="{{def.name}}" data-override-key="system.defense.{{toLowercase def.name}}.override">
+                <input class="input" type="text" value="{{def.total}}" name="system.attributes.{{id}}.manual"
+                    disabled />
+            </div>
+        </div>
+        <div class="flex-row flex-end">
+            <div class="flex-col">
+                <label class="small-header">Base</label>
+                <div class="unlabeled-input">
+                    <input class="input" type="text" value="10" disabled />
+                </div>
+            </div>
+            <div class="flex-col">
+                <label class="small-header">Level Armor</label>
+                <div class="unlabeled-input">
+                    <input class="input" type="text" value="{{def.armorBonus}}" disabled />
+                </div>
+            </div>
+            <div class="flex-col">
+                <label class=" small-header">Ability</label>
+                <div class="unlabeled-input">
+                    <input class="input" type="text" value="{{def.abilityBonus}}" disabled />
+                </div>
+            </div>
+            <div class="flex-col">
+                <label class=" small-header">Class</label>
+                <div class="unlabeled-input">
+                    <input class="input" type="text" value="{{def.classBonus}}" disabled />
+                </div>
+            </div>
+            <div class="flex-col">
+                <label class=" small-header">Misc</label>
+                <div class="unlabeled-input" title="{{def.miscBonusTip}}">
+                    <input class="input" type="text" value="{{def.miscBonus}}" disabled />
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+    {{/unless}}
+    {{/each}}
+</div>

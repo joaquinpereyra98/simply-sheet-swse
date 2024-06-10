@@ -1,0 +1,29 @@
+<div class="gravity panel">
+    <label class="medium-header"> Gravity</label>
+    <div class="flex-col">
+        <table class="resource-table">
+            <thead>
+                <tr>
+                    <th>Normal</th>
+                    <th>High</th>
+                    <th>Low</th>
+                    <th>Zero</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {{#radio actor.system.gravity}}
+                    <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
+                                value="Normal" /></label></td>
+                    <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
+                                value="High" /></label></td>
+                    <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
+                                value="Low" /></label></td>
+                    <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
+                                value="Zero" /></label></td>
+                    {{/radio}}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

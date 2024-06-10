@@ -1,0 +1,40 @@
+<div class="shields panel">
+    <label class="medium-header">Shield</label>
+    <div class="flex-row">
+        <div class="flex-col">
+            <label class="small-header">Current</label>
+            <div class="unlabeled-input">
+                <input class="left-input" id="currentShield" type="number" name="system.shields.value"
+                    value="{{actor.system.shields.value}}" data-dtype="Number" />
+                <div class="flex-row">
+                    <div class="control-2"
+                        title="Toggle Shield {{#if actor.system.shields.active}}Off{{else}}On{{/if}}"><a
+                            data-action="shield" data-action-type="toggle"
+                            class="{{#if actor.system.shields.active}}cursor{{/if}}"><i
+                                class="fas fa-shield-virus"></i></a></div>
+                    <div class="control-1" title="Shield +5"><a data-action="shield" data-action-type="plus"><i
+                                class="fas fa-plus"></i></a></div>
+                    <div class="control-0" title="Shield -5"><a data-action="shield" data-action-type="minus"><i
+                                class="fas fa-minus"></i></a></div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        {{#if actor.system.shields.failureChance}}
+        <div class="flex-col">
+            <label class="small-header">Failure Chance</label>
+            <div class="unlabeled-input">
+                <input class="middle-input" id="failureChance" type="text" value="{{actor.system.defense.fort.total}}"
+                    disabled />
+            </div>
+        </div>
+        <div class="divider"></div>
+        {{/if}}
+        <div class="flex-col">
+            <label class="small-header">Total</label>
+            <div class="unlabeled-input">
+                <input class="right-input" id="maxShields" type="text" value="{{actor.system.shields.max}}" disabled />
+            </div>
+        </div>
+    </div>
+</div>

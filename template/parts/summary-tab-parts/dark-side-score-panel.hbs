@@ -1,0 +1,9 @@
+<div class="dark-side-score panel">
+    <label class="medium-header">Dark Side Score</label>
+    <div class="grid dack-score-grid">
+        {{#each actor.system.darkSideArray as |value|}}
+        <div class="dark-score-btn {{ifThen value.active " active" "" }}" data-value="{{value.value}}">
+            {{value.value}}</div>
+        {{/each}}
+    </div>
+</div>

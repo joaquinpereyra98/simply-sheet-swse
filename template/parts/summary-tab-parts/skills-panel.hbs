@@ -1,0 +1,96 @@
+<div class="skills panel">
+    <label class="medium-header">Skills</label>
+    <table class="skill-table resource-table">
+        <thead>
+            <tr>
+                <th colspan="2"></th>
+                <th>Trained</th>
+                <th>Custom Bonus</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each skills as |skill id|}}
+            {{#unless skill.hide}}
+            <tr class="draggable {{skill.rowColor}}" data-variable="{{skill.variable}}" data-label="{{skill.label}}"
+                data-type="skill">
+                <td class="accordion-icon-row">
+                    <a class="accordion-skill-button" data-id="{{id}}">
+                        <i class="fa-solid fa-angle-down accordion-icon {{ifThen skill.accordionState " rotate" ""
+                            }}"></i>
+                    </a>
+                </td>
+                <td class="label-cell">
+                    {{!-- {{#unless skill.uut}}(TRAINED){{/unless}} --}}
+                    <a href="{{skill.link}}">{{skill.label}}</a>
+                </td>
+                <td {{!trained-checbox}}>
+                    {{#if skill.isClass}}
+                    <label title="trained skills get an additional +5">
+                        <input class="skill" type="checkbox" data-id="{{id}}" data-name="system.skills.{{id}}.trained"
+                            {{#if skill.trained}}checked{{/if}} />
+                    </label>
+                    {{/if}}
+                </td>
+                <td{{!Custom Bonus}}>
+                    <input class="plain total-skill-input" name="system.skills.{{id}}.manualBonus" type="number"
+                        value="{{skill.manualBonus}}" placeholder="0" />
+                    </td>
+                    <td {{!total}} class="total-skill" title="{{skill.title}}">{{skill.value}}</td>
+                    <td {{!roll}}>
+                        <a class="rollable" title="Roll 1d20 + {{skill.value}}" data-label="{{id}}"
+                            data-roll="1d20 + {{skill.value}}" data-notes="{{skill.notes}}">
+                            <i class="fa-solid fa-dice-d20 fa-lg"></i>
+                        </a>
+                    </td>
+            </tr>
+            <tr class="row-accordion-body">
+                <td colspan="6">
+                    <div class="accordion-skill-body {{ifThen skill.accordionState "" " hidden"}}" data-id="{{id}}">
+                        <div class="grid grid-5col">
+                            <div class="flex-col">
+                                <label class="small-header">Attribute</label>
+                                <select class="select-skill-attribute" name="skill.attribute">
+                                    {{!-- {{selectOptions myChoices selected=value localize=false}} --}}
+                                </select>
+                            </div>
+
+                            {{!-- <div class="background-text-container">
+                                {{toUpperCase skill.attribute}}({{skill.abilityBonus}})
+                            </div> --}}
+                            <div class="flex-col">
+                                <label class="small-header">Focus</label>
+                                <div class="unlabeled-input">
+                                    <input type="number" value="{{skill.focusBonus}}" disabled />
+                                </div>
+                            </div>
+                            <div class="flex-col">
+                                <label class="small-header">Misc</label>
+                                <div class="unlabeled-input">
+                                    <input type="number" value="{{skill.miscBonus}}" disabled />
+                                </div>
+                            </div>
+                            <div class="flex-col">
+                                {{#if skill.acp}}
+                                <label class="small-header">Armor</label>
+                                <div class="unlabeled-input">
+                                    <input type="number" value="{{skill.armorPenalty}}" disabled />
+                                </div>
+                                {{/if}}
+                            </div>
+                            <div class="flex-col">
+                                <label class="small-header">Trainer</label>
+                                <div class="unlabeled-input">
+                                    <input type="number" value="{{skill.trainedBonus}}" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {{/unless}}
+            {{/each}}
+        </tbody>
+    </table>
+</div>
