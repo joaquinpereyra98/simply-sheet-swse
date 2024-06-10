@@ -21,6 +21,15 @@
 /*
 * Simply Sheet Header
 */
+.simply-sheet .accordion-icon{
+    transition: 500ms all;
+}
+.simply-sheet .accordion-icon.rotate {
+    rotate: 180deg;
+}
+.accordion-icon-row {
+    width: 20px;
+}
 .simply-sheet .sheet-header .img-container img {
     margin: 0;
     border: 0;
@@ -53,9 +62,12 @@
 .simply-sheet .tab-summary .left-column {
     width: 43%;
 }
+.simply-sheet .tab-summary .big-column {
+    width: 66%;
+}
 .simply-sheet .tab-summary .middle-column,
  .simply-sheet .tab-summary .right-column {
-    width: 33%;
+    width: 50%;
 }
 .simply-sheet .labels-row div.label-row {
     flex: 1;
@@ -111,4 +123,21 @@
     padding-bottom: 5px;
     margin-bottom: 5px;
     border-bottom: 2px solid #424ca491;
+}
+.simply-sheet .tab-summary .skill-table td.label-cell {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+.simply-sheet .tab-summary .skill-table td.total-skill{
+    font-size: large;
+    font-weight: bold;
+}
+.simply-sheet .tab-summary .skill-table input.total-skill-input {
+    padding: 0;
+    width: 1.8em;
+}
+.simply-sheet .tab-summary .skill-table select.select-skill-attribute {
+    padding: 0;
+    height: calc(var(--form-field-height) + 1px);
 }

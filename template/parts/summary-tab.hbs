@@ -116,239 +116,340 @@
             {{/each}}
         </div>
     </div>
-    <div class="flex-col middle-column">
-        <div class="hit-point panel">
-            <label class="medium-header">Hit Points</label>
-            <div class="flex-row">
-                <div class="flex-col">
-                    <label class="small-header">Current</label>
-                    <div class="unlabeled-input">
-                        <input class="left-input" id="currentHealth" type="number" name="system.health.value"
-                            value="{{actor.health.value}}" data-dtype="Number" />
+    <div class="flex-col big-column">
+        <div class="flex">
+            <div class="flex-col middle-column">
+                <div class="hit-point panel">
+                    <label class="medium-header">Hit Points</label>
+                    <div class="flex-row">
+                        <div class="flex-col">
+                            <label class="small-header">Current</label>
+                            <div class="unlabeled-input">
+                                <input class="left-input" id="currentHealth" type="number" name="system.health.value"
+                                    value="{{actor.health.value}}" data-dtype="Number" />
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="flex-col">
+                            <label class="small-header">Max</label>
+                            <div class="unlabeled-input numeric-override" data-override="{{actor.health.override}}"
+                                data-override-name="Total Health" data-override-key="system.health.override">
+                                <input class="right-input" id="maxHealth" type="text" value="{{actor.health.max}}"
+                                    disabled />
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="divider"></div>
-                <div class="flex-col">
-                    <label class="small-header">Max</label>
-                    <div class="unlabeled-input numeric-override" data-override="{{actor.health.override}}"
-                        data-override-name="Total Health" data-override-key="system.health.override">
-                        <input class="right-input" id="maxHealth" type="text" value="{{actor.health.max}}" disabled />
-                    </div>
-                </div>
-            </div>
-            <div class="flex-col">
-                <label for="secondWind" class="small-header"
-                    title="Regardless of second winds per day, only one can be used per encounter.">
-                    Second Winds
-                </label>
-                <div class="unlabeled-input ">
-                    <input id="secondWind" type="text" disabled />
-                    {{#times actor.system.secondWind.perDay}}
-                    <input class="left-control-{{this}}" data-action="toggle-second-wind" type="checkbox"
-                        data-name="system.secondWind.toggles.{{this}}" {{#if (lookup ../actor.system.secondWind.toggles
-                        this)}}checked{{/if}}>
-                    {{/times}}
-                </div>
-            </div>
-        </div>
-        <div class="threshold panel">
-            <label class="medium-header">Damage Threshold</label>
-            <div class="flex-row">
-                <div class="flex-col" {{!--Threshold Total --}}>
-                    <div class="small-header">Total</div>
-                    <div class="unlabeled-input">
-                        <input class="left-input" id="damageThreshold" type="text"
-                            value="{{actor.system.defense.damageThreshold.total}}" disabled />
-                    </div>
-                </div>
-                <div class="divider"></div>
-                <div class="flex-col" {{!--Fortitude --}}>
-                    <div class="small-header">Fortitude</div>
-                    <div class="unlabeled-input">
-                        <input class="middle-input" id="dtFort" type="text"
-                            value="{{actor.system.defense.fortitude.total}}" disabled />
-                    </div>
-                </div>
-                <div class="divider"></div>
-                <div class="flex-col" {{!--Misc Mod --}}>
-                    <div class="small-header">Misc.Mod</div>
-                    <div class="unlabeled-input">
-                        <input class="right-input" id="dtMisc" type="number" name="system.defense.damageThreshold.misc"
-                            value="{{actor.system.defense.damageThreshold.misc}}" />
-                    </div>
-                </div>
-            </div>
-            <div class="flex-col" {{!--Damage Reduction --}}>
-                <label class="small-header">Damage Reduction</label>
-                <div class="unlabeled-input">
-                    <input class="" id="damageReduction" type="text" value="{{actor.system.defense.damageReduction}}"
-                        disabled />
-                </div>
-            </div>
-            <div class="flex-col">
-                <label class="small-header" for="baseAttack">
-                    Base Attack
-                    <span class="control-0">
-                        <a class="rollable" title="Roll 1d20 + {{actor.baseAttackBonus}}"
-                            data-roll="1d20 + {{actor.baseAttackBonus}}"><i class="fas fa-dice-d20"></i></a>
-                    </span>
-                </label>
-                <div class="unlabeled-input flex-row">
-                    <input id="baseAttack" type="text" value="{{actor.baseAttackBonus}}" disabled />
-                </div>
-            </div>
-            <div class="flex-col">
-                <label class="small-header" for="grapple">
-                    Grapple Bonus
-                    <span class="control-0">
-                        <a class="rollable" title="Roll 1d20 + {{actor.grapple}}"
-                            data-roll="1d20 + {{actor.grapple}}"><i class="fas fa-dice-d20"></i></a>
-                    </span>
-                </label>
-                <div class="unlabeled-input flex-row">
-                    <input id="grapple" type="text" value="{{actor.grapple}}" disabled />
-                </div>
-            </div>
-        </div>
-        <div class="dark-side-score panel">
-            <label class="medium-header">Dark Side Score</label>
-            <div class="grid dack-score-grid">
-                {{#each actor.system.darkSideArray as |value|}}
-                <div class="dark-score-btn {{ifThen value.active " active" "" }}" data-value="{{value.value}}">
-                    {{value.value}}</div>
-                {{/each}}
-            </div>
-        </div>
-    </div>
-    <div class="flex-col right-column">
-        <div class="speed panel">
-            <div class="flex-col">
-                <label class="medium-header" for="dtMisc">Speed</label>
-                <div class="unlabeled-input">
-                    <input id="dtMisc" type="text" value="{{actor.speed}}" disabled />
-                </div>
-            </div>
-        </div>
-        <div class="points panel">
-            <label class="medium-header">Force Points</label>
-            <div class="flex-col">
-                <div class="unlabeled-input">
-                    <input class="plain" type="number" name="system.forcePoints" value="{{actor.system.forcePoints}}"
-                        data-dtype="Number" />
-                </div>
-            </div>
-            <label class="medium-header">Destiny Points</label>
-            <div class="flex-col">
-                <div class="unlabeled-input">
-                    <input class="plain" type="number" name="system.destinyPoints"
-                        value="{{actor.system.destinyPoints}}" data-dtype="Number" />
-                </div>
-            </div>
-        </div>
-        <div class="shields panel">
-            <label class="medium-header">Shield</label>
-            <div class="flex-row">
-                <div class="flex-col">
-                    <label class="small-header">Current</label>
-                    <div class="unlabeled-input">
-                        <input class="left-input" id="currentShield" type="number" name="system.shields.value"
-                            value="{{actor.system.shields.value}}" data-dtype="Number" />
-                        <div class="flex-row">
-                            <div class="control-2"
-                                title="Toggle Shield {{#if actor.system.shields.active}}Off{{else}}On{{/if}}"><a
-                                    data-action="shield" data-action-type="toggle"
-                                    class="{{#if actor.system.shields.active}}cursor{{/if}}"><i
-                                        class="fas fa-shield-virus"></i></a></div>
-                            <div class="control-1" title="Shield +5"><a data-action="shield" data-action-type="plus"><i
-                                        class="fas fa-plus"></i></a></div>
-                            <div class="control-0" title="Shield -5"><a data-action="shield" data-action-type="minus"><i
-                                        class="fas fa-minus"></i></a></div>
+                    <div class="flex-col">
+                        <label for="secondWind" class="small-header"
+                            title="Regardless of second winds per day, only one can be used per encounter.">
+                            Second Winds
+                        </label>
+                        <div class="unlabeled-input ">
+                            <input id="secondWind" type="text" disabled />
+                            {{#times actor.system.secondWind.perDay}}
+                            <input class="left-control-{{this}}" data-action="toggle-second-wind" type="checkbox"
+                                data-name="system.secondWind.toggles.{{this}}" {{#if (lookup
+                                ../actor.system.secondWind.toggles this)}}checked{{/if}}>
+                            {{/times}}
                         </div>
                     </div>
                 </div>
-                <div class="divider"></div>
-                {{#if actor.system.shields.failureChance}}
-                <div class="flex-col">
-                    <label class="small-header">Failure Chance</label>
-                    <div class="unlabeled-input">
-                        <input class="middle-input" id="failureChance" type="text"
-                            value="{{actor.system.defense.fort.total}}" disabled />
+                <div class="threshold panel">
+                    <label class="medium-header">Damage Threshold</label>
+                    <div class="flex-row">
+                        <div class="flex-col" {{!--Threshold Total --}}>
+                            <div class="small-header">Total</div>
+                            <div class="unlabeled-input">
+                                <input class="left-input" id="damageThreshold" type="text"
+                                    value="{{actor.system.defense.damageThreshold.total}}" disabled />
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="flex-col" {{!--Fortitude --}}>
+                            <div class="small-header">Fortitude</div>
+                            <div class="unlabeled-input">
+                                <input class="middle-input" id="dtFort" type="text"
+                                    value="{{actor.system.defense.fortitude.total}}" disabled />
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="flex-col" {{!--Misc Mod --}}>
+                            <div class="small-header">Misc.Mod</div>
+                            <div class="unlabeled-input">
+                                <input class="right-input" id="dtMisc" type="number"
+                                    name="system.defense.damageThreshold.misc"
+                                    value="{{actor.system.defense.damageThreshold.misc}}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-col" {{!--Damage Reduction --}}>
+                        <label class="small-header">Damage Reduction</label>
+                        <div class="unlabeled-input">
+                            <input class="" id="damageReduction" type="text"
+                                value="{{actor.system.defense.damageReduction}}" disabled />
+                        </div>
+                    </div>
+                    <div class="flex-col">
+                        <label class="small-header" for="baseAttack">
+                            Base Attack
+                            <span class="control-0">
+                                <a class="rollable" title="Roll 1d20 + {{actor.baseAttackBonus}}"
+                                    data-roll="1d20 + {{actor.baseAttackBonus}}"><i class="fas fa-dice-d20"></i></a>
+                            </span>
+                        </label>
+                        <div class="unlabeled-input flex-row">
+                            <input id="baseAttack" type="text" value="{{actor.baseAttackBonus}}" disabled />
+                        </div>
+                    </div>
+                    <div class="flex-col">
+                        <label class="small-header" for="grapple">
+                            Grapple Bonus
+                            <span class="control-0">
+                                <a class="rollable" title="Roll 1d20 + {{actor.grapple}}"
+                                    data-roll="1d20 + {{actor.grapple}}"><i class="fas fa-dice-d20"></i></a>
+                            </span>
+                        </label>
+                        <div class="unlabeled-input flex-row">
+                            <input id="grapple" type="text" value="{{actor.grapple}}" disabled />
+                        </div>
                     </div>
                 </div>
-                <div class="divider"></div>
-                {{/if}}
-                <div class="flex-col">
-                    <label class="small-header">Total</label>
-                    <div class="unlabeled-input">
-                        <input class="right-input" id="maxShields" type="text" value="{{actor.system.shields.max}}"
-                            disabled />
+                <div class="dark-side-score panel">
+                    <label class="medium-header">Dark Side Score</label>
+                    <div class="grid dack-score-grid">
+                        {{#each actor.system.darkSideArray as |value|}}
+                        <div class="dark-score-btn {{ifThen value.active " active" "" }}" data-value="{{value.value}}">
+                            {{value.value}}</div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <div class="flex-col right-column">
+                <div class="speed panel">
+                    <div class="flex-col">
+                        <label class="medium-header" for="dtMisc">Speed</label>
+                        <div class="unlabeled-input">
+                            <input id="dtMisc" type="text" value="{{actor.speed}}" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="points panel">
+                    <label class="medium-header">Force Points</label>
+                    <div class="flex-col">
+                        <div class="unlabeled-input">
+                            <input class="plain" type="number" name="system.forcePoints"
+                                value="{{actor.system.forcePoints}}" data-dtype="Number" />
+                        </div>
+                    </div>
+                    <label class="medium-header">Destiny Points</label>
+                    <div class="flex-col">
+                        <div class="unlabeled-input">
+                            <input class="plain" type="number" name="system.destinyPoints"
+                                value="{{actor.system.destinyPoints}}" data-dtype="Number" />
+                        </div>
+                    </div>
+                </div>
+                <div class="shields panel">
+                    <label class="medium-header">Shield</label>
+                    <div class="flex-row">
+                        <div class="flex-col">
+                            <label class="small-header">Current</label>
+                            <div class="unlabeled-input">
+                                <input class="left-input" id="currentShield" type="number" name="system.shields.value"
+                                    value="{{actor.system.shields.value}}" data-dtype="Number" />
+                                <div class="flex-row">
+                                    <div class="control-2"
+                                        title="Toggle Shield {{#if actor.system.shields.active}}Off{{else}}On{{/if}}"><a
+                                            data-action="shield" data-action-type="toggle"
+                                            class="{{#if actor.system.shields.active}}cursor{{/if}}"><i
+                                                class="fas fa-shield-virus"></i></a></div>
+                                    <div class="control-1" title="Shield +5"><a data-action="shield"
+                                            data-action-type="plus"><i class="fas fa-plus"></i></a></div>
+                                    <div class="control-0" title="Shield -5"><a data-action="shield"
+                                            data-action-type="minus"><i class="fas fa-minus"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        {{#if actor.system.shields.failureChance}}
+                        <div class="flex-col">
+                            <label class="small-header">Failure Chance</label>
+                            <div class="unlabeled-input">
+                                <input class="middle-input" id="failureChance" type="text"
+                                    value="{{actor.system.defense.fort.total}}" disabled />
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        {{/if}}
+                        <div class="flex-col">
+                            <label class="small-header">Total</label>
+                            <div class="unlabeled-input">
+                                <input class="right-input" id="maxShields" type="text"
+                                    value="{{actor.system.shields.max}}" disabled />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="condition panel">
+                    <label class="medium-header">Condition</label>
+                    <div class="flex-col">
+                        <table class="resource-table">
+                            <thead>
+                                <tr>
+                                    <th>-</th>
+                                    <th>-1</th>
+                                    <th>-2</th>
+                                    <th>-5</th>
+                                    <th>-10</th>
+                                    <th>Out</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    {{#radio actor.system.condition}}
+                                    <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                                value="0" /></label></td>
+                                    <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                                value="-1" /></label></td>
+                                    <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                                value="-2" /></label></td>
+                                    <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                                value="-5" /></label></td>
+                                    <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                                value="-10" /></label></td>
+                                    <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
+                                                value="OUT" /></label></td>
+                                    {{/radio}}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="gravity panel">
+                    <label class="medium-header"> Gravity</label>
+                    <div class="flex-col">
+                        <table class="resource-table">
+                            <thead>
+                                <tr>
+                                    <th>Normal</th>
+                                    <th>High</th>
+                                    <th>Low</th>
+                                    <th>Zero</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    {{#radio actor.system.gravity}}
+                                    <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
+                                                value="Normal" /></label></td>
+                                    <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
+                                                value="High" /></label></td>
+                                    <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
+                                                value="Low" /></label></td>
+                                    <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
+                                                value="Zero" /></label></td>
+                                    {{/radio}}
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="condition panel">
-            <label class="medium-header">Condition</label>
-            <div class="flex-col">
-                <table class="resource-table">
-                    <thead>
-                        <tr>
-                            <th>-</th>
-                            <th>-1</th>
-                            <th>-2</th>
-                            <th>-5</th>
-                            <th>-10</th>
-                            <th>Out</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            {{#radio actor.system.condition}}
-                            <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
-                                        value="0" /></label></td>
-                            <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
-                                        value="-1" /></label></td>
-                            <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
-                                        value="-2" /></label></td>
-                            <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
-                                        value="-5" /></label></td>
-                            <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
-                                        value="-10" /></label></td>
-                            <td><label><input class="condition-radio" type="radio" name="condition-{{actor.id}}"
-                                        value="OUT" /></label></td>
-                            {{/radio}}
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="gravity panel">
-            <label class="medium-header"> Gravity</label>
-            <div class="flex-col">
-                <table class="resource-table">
-                    <thead>
-                        <tr>
-                            <th>Normal</th>
-                            <th>High</th>
-                            <th>Low</th>
-                            <th>Zero</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            {{#radio actor.system.gravity}}
-                            <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
-                                        value="Normal" /></label></td>
-                            <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
-                                        value="High" /></label></td>
-                            <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
-                                        value="Low" /></label></td>
-                            <td><label><input class="gravity-radio" type="radio" name="gravity-{{actor.id}}"
-                                        value="Zero" /></label></td>
-                            {{/radio}}
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="skills panel">
+            <label class="medium-header">Skills</label>
+            <table class="skill-table resource-table">
+                <thead>
+                    <tr>
+                        <th colspan="2"></th>
+                        <th>Trained</th>
+                        <th>Custom Bonus</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each skills as |skill id|}}
+                    {{#unless skill.hide}}
+                    <tr class="draggable {{skill.rowColor}}" data-variable="{{skill.variable}}"
+                        data-label="{{skill.label}}" data-type="skill">
+                        <td class="accordion-icon-row">
+                            <a class="accordion-skill-button" data-id="{{id}}">
+                                <i class="fa-solid fa-angle-down accordion-icon {{ifThen skill.accordionState "rotate" ""}}"></i>
+                            </a>
+                        </td>
+                        <td class="label-cell">
+                            {{!-- {{#unless skill.uut}}(TRAINED){{/unless}} --}}
+                            <a href="{{skill.link}}">{{skill.label}}</a>
+                        </td>
+                        <td {{!trained-checbox}}>
+                            {{#if skill.isClass}}
+                            <label title="trained skills get an additional +5">
+                                <input class="skill" type="checkbox" data-id="{{id}}"
+                                    data-name="system.skills.{{id}}.trained" {{#if skill.trained}}checked{{/if}} />
+                            </label>
+                            {{/if}}
+                        </td>
+                        <td{{!Custom Bonus}}>
+                            <input class="plain total-skill-input" name="system.skills.{{id}}.manualBonus" type="number"
+                                value="{{skill.manualBonus}}" placeholder="0" />
+                            </td>
+                            <td {{!total}} class="total-skill" title="{{skill.title}}">{{skill.value}}</td>
+                            <td {{!roll}}>
+                                <a class="rollable" title="Roll 1d20 + {{skill.value}}" data-label="{{id}}"
+                                    data-roll="1d20 + {{skill.value}}" data-notes="{{skill.notes}}">
+                                    <i class="fa-solid fa-dice-d20 fa-lg"></i>
+                                </a>
+                            </td>
+                    </tr>
+                    <tr class="row-accordion-body">
+                        <td colspan="6">
+                            <div class="accordion-skill-body {{ifThen skill.accordionState "" "hidden"}}" data-id="{{id}}">
+                                <div class="grid grid-5col">
+                                    <div class="flex-col">
+                                        <label class="small-header">Attribute</label>
+                                        <select class="select-skill-attribute" name="skill.attribute">
+                                            {{!-- {{selectOptions myChoices selected=value localize=false}} --}}
+                                        </select>
+                                    </div>
+
+                                    {{!-- <div class="background-text-container">
+                                        {{toUpperCase skill.attribute}}({{skill.abilityBonus}})
+                                    </div> --}}
+                                    <div class="flex-col">
+                                        <label class="small-header">Focus</label>
+                                        <div class="unlabeled-input">
+                                            <input type="number" value="{{skill.focusBonus}}" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="flex-col">
+                                        <label class="small-header">Misc</label>
+                                        <div class="unlabeled-input">
+                                            <input type="number" value="{{skill.miscBonus}}" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="flex-col">
+                                        {{#if skill.acp}}
+                                        <label class="small-header">Armor</label>
+                                        <div class="unlabeled-input">
+                                            <input type="number" value="{{skill.armorPenalty}}" disabled />
+                                        </div>
+                                        {{/if}}
+                                    </div>
+                                    <div class="flex-col">
+                                        <label class="small-header">Trainer</label>
+                                        <div class="unlabeled-input">
+                                            <input type="number" value="{{skill.trainedBonus}}" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/unless}}
+                    {{/each}}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
