@@ -1,0 +1,25 @@
+<div class="attacks panel">
+    <label class="medium-header">Equiped Armor</label>
+    <table class="armor-table resource-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Reflex</th>
+                <th>Fortitude</th>
+                <th>Max. Dex</th>  
+            </tr>  
+        </thead>
+        <tbody>
+            {{#each actor.system.armors as |armor|}}
+            {{#unless armor.hide}}
+            <tr>
+                <td>{{armor.name}} <b>({{armor.type}})</b></td>
+                <td>{{numberFormat armor.refDefense sign=true}}</td>
+                <td>{{numberFormat armor.fortDefense sign=true}}</td>
+                <td>{{numberFormat armor.maxDex sign=true}}</td>
+            </tr>
+            {{/unless}}
+            {{/each}}
+        </tbody>
+    </table>
+</div>

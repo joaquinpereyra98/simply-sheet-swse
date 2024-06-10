@@ -12,6 +12,8 @@ export async function prepareTemplates(){
         "modules/simply-sheet-swse/template/parts/summary-tab-parts/condition-panel.hbs",
         "modules/simply-sheet-swse/template/parts/summary-tab-parts/gravity-panel.hbs",
         "modules/simply-sheet-swse/template/parts/summary-tab-parts/skills-panel.hbs",
-        "modules/simply-sheet-swse/template/parts/summary-tab-parts/dark-side-score-panel.hbs"
+        "modules/simply-sheet-swse/template/parts/summary-tab-parts/dark-side-score-panel.hbs",
+        "modules/simply-sheet-swse/template/parts/summary-tab-parts/armor-panel.hbs",
+        "modules/simply-sheet-swse/template/parts/summary-tab-parts/attacks-panel.hbs"
     ])
 }

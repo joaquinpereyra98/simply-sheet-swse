@@ -4,10 +4,14 @@
 .simply-sheet .labeled-input {
     margin-top: -10px;
 }
-.simply-sheet input[type=text], .simply-sheet input[type=number], .simply-sheet select {
+
+.simply-sheet input[type=text],
+.simply-sheet input[type=number],
+.simply-sheet select {
     font-size: 1rem;
     text-align: center;
 }
+
 .simply-sheet .unlabeled-input {
     padding: 0;
     height: -webkit-fit-content;
@@ -15,69 +19,86 @@
     height: fit-content;
     position: relative;
 }
+
 .simply-sheet .unlabeled-input input {
     padding: 0;
 }
+
 /*
 * Simply Sheet Header
 */
-.simply-sheet .accordion-icon{
+.simply-sheet .accordion-icon {
     transition: 500ms all;
 }
+
 .simply-sheet .accordion-icon.rotate {
     rotate: 180deg;
 }
+
 .accordion-icon-row {
     width: 20px;
 }
+
 .simply-sheet .sheet-header .img-container img {
     margin: 0;
     border: 0;
     height: auto;
     flex: 1;
 }
+
 .simply-sheet .sheet-header .inputs-headers-container {
     flex: 7;
 }
+
 .simply-sheet .sheet-header .inputs-headers-container .name-container h1.charname {
     flex: 8
 }
+
 .simply-sheet .sheet-header .inputs-headers-container .name-container .level-container {
     flex: 2;
 }
+
 .simply-sheet .sheet-header .inputs-headers-container .name-container .level-container input {
     height: 48px;
     font-size: xx-large;
     text-align: center;
 }
+
 .simply-sheet .sheet-header .inputs-headers-container .name-container input {
     font-size: larger;
     padding: 5px;
 }
+
 .simply-sheet .tab-summary {
     display: flex;
     align-items: flex-start;
     justify-content: space-around;
 }
+
 .simply-sheet .tab-summary .left-column {
     width: 43%;
 }
+
 .simply-sheet .tab-summary .big-column {
     width: 66%;
 }
+
 .simply-sheet .tab-summary .middle-column,
- .simply-sheet .tab-summary .right-column {
+.simply-sheet .tab-summary .right-column {
     width: 50%;
 }
+
 .simply-sheet .labels-row div.label-row {
     flex: 1;
 }
+
 .simply-sheet .unlabeled-input .ability-label,
-.simply-sheet .unlabeled-input .defence-label{
+.simply-sheet .unlabeled-input .defence-label {
     text-align: center;
     font-weight: bold;
     font-size: 18px;
 }
+
 .simply-sheet .tab-summary .resource-table {
     border-spacing: 0;
     border-collapse: separate;
@@ -86,22 +107,37 @@
     overflow: hidden;
     margin: 1px 0;
 }
+
 .simply-sheet .tab-summary .resource-table thead {
     background-color: var(--color-foreground);
     font-size: small;
 }
+
 .simply-sheet .tab-summary .resource-table tbody {
     background-color: var(--color-background);
 }
-.simply-sheet .tab-summary .resource-table tbody input{
+
+.simply-sheet .tab-summary .resource-table tbody input {
     margin: 0 1px
 }
+
+.simply-sheet .tab-summary .resource-table tr:hover {
+    background-color: #d1d1d1;
+}
+
+.simply-sheet .tab-summary .resource-table td.label-cell {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
 .simply-sheet .tab-summary .dack-score-grid {
     gap: 4px;
     margin: 5px 0;
     grid-column: span 6 / span 6;
     grid-template-columns: repeat(6, minmax(0, 1fr));
 }
+
 .simply-sheet .tab-summary .dark-score-btn {
     background-color: #a4a8c5;
     color: white;
@@ -113,31 +149,54 @@
     text-shadow: 2px 1px var(--color-shadow-dark);
     cursor: pointer;
 }
+
 .simply-sheet .tab-summary .dark-score-btn.active {
     background-color: #f44336;
 }
-.simply-sheet .tab-summary .defence.panel .flex-end{
+
+.simply-sheet .tab-summary .defence.panel .flex-end {
     align-items: flex-end;
 }
+
 .simply-sheet .tab-summary .defence.panel .defense-block {
     padding-bottom: 5px;
     margin-bottom: 5px;
     border-bottom: 2px solid #424ca491;
 }
-.simply-sheet .tab-summary .skill-table td.label-cell {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-}
-.simply-sheet .tab-summary .skill-table td.total-skill{
+
+.simply-sheet .tab-summary .skill-table td.total-skill {
     font-size: large;
     font-weight: bold;
 }
+
 .simply-sheet .tab-summary .skill-table input.total-skill-input {
     padding: 0;
     width: 1.8em;
 }
+
 .simply-sheet .tab-summary .skill-table select.select-skill-attribute {
     padding: 0;
     height: calc(var(--form-field-height) + 1px);
+}
+
+.simply-sheet .tab-summary .skill-table .row-accordion-body td {
+    width: 96%;
+    background-color: #d3d3d3;
+    padding: 0 2px;
+}
+
+.simply-sheet .tab-summary .skill-table .highlighted-skill {
+    background-color: rgb(199, 219, 219);
+}
+
+.simply-sheet .tab-summary .armor-table th {
+    padding: 0 4px
+}
+
+.simply-sheet .tab-summary .attack-table .btn-roll-attack {
+    cursor: pointer;
+}
+
+.simply-sheet .tab-summary .attack-table .btn-roll-attack:hover {
+    text-shadow: 0 0 10px var(--color-shadow-primary);
 }

@@ -1,0 +1,24 @@
+<div class="attacks panel">
+    <label class="medium-header">Attacks</label>
+    <table class="attack-table resource-table">
+        <tbody>
+            {{#each actor.system.attacks as |attack|}}
+            {{#unless attack.hide}}
+            <tr>
+                <td class="label-cell">{{attack.name}}</td>
+                <td>
+                    {{log attack}}
+                    <div class="btn-roll-attack {{#if
+                attack.provider}}vehicle {{/if}}attack"
+                        data-attacks="[{{attack.toJSONString}}]" data-item-id="{{attack.itemId}}"
+                        data-provider-id="{{attack.providerId}}" data-actor-id="{{attack.actorId}}"
+                        data-label="{{attack.name}}" data-img="{{attack.img}}">
+                        <i class="fa-solid fa-dice-d20 fa-lg"></i>
+                        </div>
+                </td>
+            </tr>
+            {{/unless}}
+            {{/each}}
+        </tbody>
+    </table>
+</div>
