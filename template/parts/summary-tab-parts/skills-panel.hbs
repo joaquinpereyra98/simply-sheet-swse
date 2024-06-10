@@ -13,7 +13,7 @@
         <tbody>
             {{#each skills as |skill id|}}
             {{#unless skill.hide}}
-            <tr class="draggable {{skill.rowColor}}" data-variable="{{skill.variable}}" data-label="{{skill.label}}"
+            <tr class="draggable {{skill.rowColor}} row-attribute-table" data-variable="{{skill.variable}}" data-label="{{skill.label}}"
                 data-type="skill">
                 <td class="accordion-icon-row">
                     <a class="accordion-skill-button" data-id="{{id}}">
@@ -80,7 +80,7 @@
                                 {{/if}}
                             </div>
                             <div class="flex-col">
-                                <label class="small-header">Trainer</label>
+                                <label class="small-header">Trained</label>
                                 <div class="unlabeled-input">
                                     <input type="number" value="{{skill.trainedBonus}}" disabled>
                                 </div>

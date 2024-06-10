@@ -121,7 +121,7 @@
     margin: 0 1px
 }
 
-.simply-sheet .tab-summary .resource-table tr:hover {
+.simply-sheet .tab-summary .resource-table .row-attribute-table:hover {
     background-color: #d1d1d1;
 }
 
@@ -191,6 +191,10 @@
 
 .simply-sheet .tab-summary .armor-table th {
     padding: 0 4px
+}
+
+.simply-sheet .tab-summary .attack-table .row-attribute-table .label-cell{
+    padding-left: 5px;
 }
 
 .simply-sheet .tab-summary .attack-table .btn-roll-attack {
