@@ -23,7 +23,6 @@
             Second Winds
         </label>
         <div class="unlabeled-input ">
-            <input id="secondWind" type="text" disabled />
             {{#times actor.system.secondWind.perDay}}
             <input class="left-control-{{this}}" data-action="toggle-second-wind" type="checkbox"
                 data-name="system.secondWind.toggles.{{this}}" {{#if (lookup ../actor.system.secondWind.toggles

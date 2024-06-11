@@ -28,6 +28,9 @@ export class SimplySWSEActorSheet extends SWSEActorSheet {
     const context = super.getData();
     this.prepareAttributes(context);
     this.prepareSkills(context);
+    this.prepareBeastComponent(context);
+    this.prepareForcePowers(context);
+    
     return context;
   }
   /**
@@ -55,6 +58,37 @@ export class SimplySWSEActorSheet extends SWSEActorSheet {
       ])
     );
   }
+  prepareBeastComponent(context) {
+    const { naturalWeapons, specialSenses, speciesTypes, specialQualities } =
+      this.actor;
+
+    context.beastComp = {
+      naturalWeapons,
+      specialSenses,
+      speciesTypes,
+      specialQualities,
+    };
+    context.beastCompLabels = Object.fromEntries(Object.keys(context.beastComp).map((k) => {
+        return [k, k.replace(/([A-Z])/g, " $1").capitalize()];
+      }));
+  }
+  prepareForcePowers(context) {
+    const { powers, secrets, techniques, regimens } =
+    this.actor;
+
+  context.forcePowers = {
+    forcePower: powers,
+    forceSecret: secrets,
+    forceTechnique: techniques,
+    forceRegimen: regimens,
+  };
+  context.forcePowersLabels = {
+    forceSecret: "Force Secrets",
+    forceTechnique: "Force Techniques",
+    forceRegimen: "Force Regimens",
+    forcePower: "Force Powers"
+  }
+  }
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
@@ -78,4 +112,14 @@ export class SimplySWSEActorSheet extends SWSEActorSheet {
       $accordionBody.slideToggle();
     });
   }
+  _onIncreaseItemQuantity(event) {
+    event.preventDefault();
+    const li = event.currentTarget.closest(".item");
+    const item = this.actor.items.get(li.dataset.itemId);
+    if(item.quantity === undefined || item.quantity === null){
+      item.update({"system.quantity": 1});
+    } else{
+      item.update({"system.quantity": item.system.quantity + 1})
+    }
+}
 }

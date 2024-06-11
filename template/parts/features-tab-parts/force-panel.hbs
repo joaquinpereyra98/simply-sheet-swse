@@ -1,0 +1,59 @@
+<div class="feats panel">
+    <div class="flex-col">
+        <div class="flex flex-between">
+            <label class="medium-header padding-3">Force</label>
+        </div>
+        {{#each forcePowers as |category key|}}
+        <div class="flex flex-between">
+            <label class="small-header padding-3">{{lookup ../forcePowersLabels key}}</label>
+            <div class="headers-buttons flex-row flex-between padding-3">
+                {{#if (eq key "forcePower")}}
+                <a class="fas fa-circle-plus" data-action="create" data-action-type="forcePower"
+                    title="Create a new Force Power"></a>
+                {{/if}}
+                <a data-action="compendium" data-type="Item" data-filter="-type:{{key}}" title="Open Compendium"><i
+                        class="fas fa-folder-plus"></i></a>
+            </div>
+        </div>
+
+        <table class="feats-table resource-table">
+            {{#each category as |item id|}}
+            <tbody>
+                <tr class="row-attribute-table item" data-item-id="{{item.id}}">
+                    <td class="label-item">
+                        <div class="flex-label">
+                            <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+                            <label class="item-name">{{item.name}}</label>
+                        </div>
+                    </td>
+                    {{#if (eq item.type "forcePower")}}
+                    <td>
+                        <div class="flex-flex-between">
+                            {{#times item.system.quantity}}
+                            <input data-action="toggle-use" type="checkbox" data-id="{{../item.id}} uses {{this}}"
+                                data-name="system.uses.{{this}}" {{#if (lookup ../item.system.uses
+                                this)}}checked{{/if}} />
+                            {{/times}}
+                        </div>
+                    </td>
+                    {{/if}}
+                    <td class="item-controls">
+                        <div class="flex-controls">
+                            {{#if (eq item.type "forcePower")}}
+                            <a data-action="increase-quantity" class="item-control" title="Increase Quantity"><i
+                                    class="fas fa-plus"></i></a>
+                            <a data-action="decrease-quantity" class="item-control" title="Decrease Quantity"><i
+                                    class="fas fa-minus"></i></a>
+                            {{/if}}
+                            <a data-action="view" class="item-control" title="Edit Item"><i class="fas fa-edit"></i></a>
+                            <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            {{/each}}
+        </table>
+        {{/each}}
+
+    </div>
+</div>

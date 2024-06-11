@@ -106,6 +106,7 @@
     border: 2px solid var(--color-foreground);
     overflow: hidden;
     margin: 1px 0;
+    min-height: 28px;
 }
 
 .simply-sheet .resource-table thead {
@@ -204,7 +205,16 @@
 .simply-sheet .tab-summary .attack-table .btn-roll-attack:hover {
     text-shadow: 0 0 10px var(--color-shadow-primary);
 }
-.simply-sheet .tab-features .class-table .item-controls .grid {
-    gap: 0;
-    margin: 0;
+.simply-sheet .tab-features .resource-table .flex-label {
+    padding-left: 15px;
+    display: flex;
+    align-items: end;
+}
+.simply-sheet .tab-features .resource-table .flex-label img {
+    margin-right: 5px;
+}
+.simply-sheet .tab-features .resource-table .flex-controls {
+    display: flex;
+    justify-content:flex-end;
+    padding-right: 15px;
 }

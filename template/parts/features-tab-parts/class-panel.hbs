@@ -3,8 +3,7 @@
         <div class="flex flex-between">
             <label class="medium-header padding-3">Class</label>
             <div class="headers-buttons flex-row flex-between padding-3">
-                <a data-action="compendium" data-type="Item" data-filter="-type:class" title="{{localize " Open
-                    Compendium"}}"><i class="fas fa-folder-plus"></i></a>
+                <a data-action="compendium" data-type="Item" data-filter="-type:class" title="Open Compendium"><i class="fas fa-folder-plus"></i></a>
             </div>
         </div>
         <table class="class-table resource-table">
@@ -12,8 +11,12 @@
             <tbody>
                 <tr class="row-attribute-table item" data-item-id="{{class.id}}">
                     <td class="label-item">
-                        <img src="{{class.img}}" title="{{class.name}}" width="24" height="24" alt="{{class.name}}" />
-                        <label class="item-name">{{class.name}}</label>
+                        <div class="flex-label">
+                            <img src="{{class.img}}" title="{{class.name}}" width="24" height="24"
+                                alt="{{class.name}}" />
+                            <label class="item-name">{{class.name}}</label>
+                        </div>
+
                     </td>
                     <td class="hp-class">
                         <span class="text-box {{#if class.canRerollHealth}}item-action short{{/if}} center"
@@ -27,7 +30,7 @@
                         {{/if}}
                     </td>
                     <td class="item-controls">
-                        <div class="grid grid-3col">
+                        <div class="flex-controls">
                             <a data-action="view" class="item-control" title="View Class Description"><i
                                     class="fas fa-edit"></i></a>
                             <a class="item-control item-duplicate" title="Copy Class"><i class="fas fa-plus"></i></a>

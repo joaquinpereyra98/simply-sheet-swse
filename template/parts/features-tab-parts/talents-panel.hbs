@@ -1,13 +1,13 @@
-<div class="feats panel">
+<div class="talents panel">
     <div class="flex-col">
         <div class="flex flex-between">
-            <label class="medium-header padding-3">Feats</label>
+            <label class="medium-header padding-3">Talents</label>
             <div class="headers-buttons flex-row flex-between padding-3">
-                <a data-action="compendium" data-type="Item" data-filter="-type:feat" title="Open Compendium"><i class="fas fa-folder-plus"></i></a>
+                <a data-action="compendium" data-type="Item" data-filter="-type:talent" title="Open Compendium"><i class="fas fa-folder-plus"></i></a>
             </div>
         </div>
-        <table class="feats-table resource-table">
-            {{#each actor.feats as |item id|}}
+        <table class="talents-table resource-table">
+            {{#each actor.talents as |item id|}}
             <tbody>
                 <tr class="row-attribute-table item" data-item-id="{{item.id}}">
                     <td class="label-item">

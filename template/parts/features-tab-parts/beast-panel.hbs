@@ -1,13 +1,15 @@
 <div class="feats panel">
     <div class="flex-col">
         <div class="flex flex-between">
-            <label class="medium-header padding-3">Feats</label>
+            <label class="medium-header padding-3">Beast Component</label>
             <div class="headers-buttons flex-row flex-between padding-3">
-                <a data-action="compendium" data-type="Item" data-filter="-type:feat" title="Open Compendium"><i class="fas fa-folder-plus"></i></a>
+                <a data-action="compendium" data-type="Item" data-pack="swse.beast components" title="Open Compendium"><i class="fas fa-folder-plus"></i></a>
             </div>
         </div>
-        <table class="feats-table resource-table">
-            {{#each actor.feats as |item id|}}
+        {{#each beastComp as |category key|}}
+        <label class="small-header padding-3">{{lookup ../beastCompLabels key}}</label>
+            <table class="feats-table resource-table">
+            {{#each category as |item id|}}
             <tbody>
                 <tr class="row-attribute-table item" data-item-id="{{item.id}}">
                     <td class="label-item">
@@ -26,5 +28,7 @@
             </tbody>
             {{/each}}
         </table>
+        {{/each}}
+        
     </div>
 </div>

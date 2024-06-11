@@ -17,6 +17,10 @@ export async function prepareTemplates(){
         "modules/simply-sheet-swse/template/parts/summary-tab-parts/armor-panel.hbs",
         "modules/simply-sheet-swse/template/parts/summary-tab-parts/attacks-panel.hbs",
         "modules/simply-sheet-swse/template/parts/features-tab-parts/class-panel.hbs",
-        "modules/simply-sheet-swse/template/parts/features-tab-parts/feats-panel.hbs"
+        "modules/simply-sheet-swse/template/parts/features-tab-parts/feats-panel.hbs",
+        "modules/simply-sheet-swse/template/parts/features-tab-parts/talents-panel.hbs",
+        "modules/simply-sheet-swse/template/parts/features-tab-parts/traits-panel.hbs",
+        "modules/simply-sheet-swse/template/parts/features-tab-parts/beast-panel.hbs",
+        "modules/simply-sheet-swse/template/parts/features-tab-parts/force-panel.hbs"
     ])
 }

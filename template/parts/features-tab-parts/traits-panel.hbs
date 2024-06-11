@@ -1,13 +1,16 @@
-<div class="feats panel">
+<div class="traits panel">
     <div class="flex-col">
+        <div>
+            <button class="flex-0" style="flex-basis:180px" data-action="gm-bonus">Add GM Bonus</button>
+        </div>
         <div class="flex flex-between">
-            <label class="medium-header padding-3">Feats</label>
+            <label class="medium-header padding-3">Traits</label>
             <div class="headers-buttons flex-row flex-between padding-3">
-                <a data-action="compendium" data-type="Item" data-filter="-type:feat" title="Open Compendium"><i class="fas fa-folder-plus"></i></a>
+                <a data-action="compendium" data-type="Item" data-filter="-type:traits" title="Open Compendium"><i class="fas fa-folder-plus"></i></a>
             </div>
         </div>
-        <table class="feats-table resource-table">
-            {{#each actor.feats as |item id|}}
+        <table class="traits-table resource-table">
+            {{#each actor.traits as |item id|}}
             <tbody>
                 <tr class="row-attribute-table item" data-item-id="{{item.id}}">
                     <td class="label-item">
