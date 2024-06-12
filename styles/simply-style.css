@@ -155,7 +155,7 @@
     background-color: #f44336;
 }
 
-.simply-sheet .tab-summary .defence.panel .flex-end {
+.simply-sheet .flex-end {
     align-items: flex-end;
 }
 
@@ -205,16 +205,46 @@
 .simply-sheet .tab-summary .attack-table .btn-roll-attack:hover {
     text-shadow: 0 0 10px var(--color-shadow-primary);
 }
-.simply-sheet .tab-features .resource-table .flex-label {
-    padding-left: 15px;
+.simply-sheet .tab-features .resource-table .flex-label,
+.simply-sheet .tab-equipment .resource-table .flex-label {
+    padding-left: 8px;
     display: flex;
-    align-items: end;
+    align-items: center;
 }
-.simply-sheet .tab-features .resource-table .flex-label img {
+.simply-sheet .tab-features .resource-table .flex-label img,
+.simply-sheet .tab-equipment .resource-table .flex-label img {
     margin-right: 5px;
 }
-.simply-sheet .tab-features .resource-table .flex-controls {
+.simply-sheet .tab-features .resource-table .flex-controls,
+.simply-sheet .tab-equipment .resource-table .flex-controls {
     display: flex;
     justify-content:flex-end;
-    padding-right: 15px;
+    padding-right: 8px;
+}
+.simply-sheet .tab-equipment .equipment-table .quantity-flex {
+    display: flex;
+    align-items: center;
+}
+.simply-sheet .tab-equipment .equipment-table .quantity-flex input {
+    max-width: 2em;
+}
+.simply-sheet .tab-equipment .equipment-table label.item-name,
+.simply-sheet .tab-equipment .equipment-table input.input {
+    font-size: 15px;
+    font-weight: normal;
+}
+.simply-sheet .tab-equipment .equipment-table .item-control i.fa-shield {
+    color: rgba(0, 0, 0, 0.4);
+}
+.simply-sheet .tab-equipment .equipment-table .item-control i.fa-shield:hover {
+    color: rgba(0, 0, 0, 0.7);
+}
+.simply-sheet .tab-equipment .equipment-table .item-control.equiped i.fa-shield {
+    color: rgba(0, 0, 0, 1)
+}
+.simply-sheet .tab-equipment .flex.flex-end {
+    justify-content: flex-end;
+}
+.simply-sheet .tab-equipment .equipament-grid {
+    margin-top: 0px;
 }

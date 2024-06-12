@@ -30,14 +30,13 @@ export class SimplySWSEActorSheet extends SWSEActorSheet {
     this.prepareSkills(context);
     this.prepareBeastComponent(context);
     this.prepareForcePowers(context);
+    this.prepareEquipment(context)
     
     return context;
   }
   /**
    * Prepare the attributes for the actor based on the system attributes.
-   *
    * @param {Object} context - The context object containing actor information.
-   *
    */
   prepareAttributes(context) {
     const system = context.actor.system;
@@ -89,6 +88,28 @@ export class SimplySWSEActorSheet extends SWSEActorSheet {
     forcePower: "Force Powers"
   }
   }
+  prepareEquipment(context) {
+    context.equipment = {
+      weapons: {
+        label: "Weapons",
+        items: this.actor.weapons,
+        compendium: "swse.weapons",
+        itemType: "weapon"
+      },
+      armors:{
+        label: "Armors",
+        items: this.actor.armors,
+        compendium: "swse.armor",
+        itemType: "armor"
+      },
+      equipment:{
+        label: "Equipments",
+        items: this.actor.inventory,
+        compendium: "swse.equipament",
+        itemType: "equipment"
+      }
+    }
+  }
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
@@ -111,15 +132,26 @@ export class SimplySWSEActorSheet extends SWSEActorSheet {
 
       $accordionBody.slideToggle();
     });
+    html.find(".item-control[data-action=equip-toggle]").on("click", this._onEquipToggle.bind(this))
   }
   _onIncreaseItemQuantity(event) {
     event.preventDefault();
     const li = event.currentTarget.closest(".item");
     const item = this.actor.items.get(li.dataset.itemId);
-    if(item.quantity === undefined || item.quantity === null){
+    if(item.system.quantity === undefined || item.system.quantity === null){
       item.update({"system.quantity": 1});
     } else{
       item.update({"system.quantity": item.system.quantity + 1})
     }
+}
+_onEquipToggle(event) {
+  event.preventDefault();
+  const li = event.currentTarget.closest(".item");
+  const item = this.actor.items.get(li.dataset.itemId);
+  if (!item.system.equipped) {
+    item.equip("equipped");
+  } else {
+    item.unequip();
+  }
 }
 }

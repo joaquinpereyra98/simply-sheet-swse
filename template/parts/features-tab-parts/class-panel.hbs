@@ -3,7 +3,8 @@
         <div class="flex flex-between">
             <label class="medium-header padding-3">Class</label>
             <div class="headers-buttons flex-row flex-between padding-3">
-                <a data-action="compendium" data-type="Item" data-filter="-type:class" title="Open Compendium"><i class="fas fa-folder-plus"></i></a>
+                <a data-action="compendium" data-type="Item" data-filter="-type:class" title="Open Compendium"><i
+                        class="fas fa-folder-plus"></i></a>
             </div>
         </div>
         <table class="class-table resource-table">
@@ -19,6 +20,7 @@
 
                     </td>
                     <td class="hp-class">
+                        HP:
                         <span class="text-box {{#if class.canRerollHealth}}item-action short{{/if}} center"
                             data-action="update-level-attribute" data-item="{{class.id}}" data-attribute="rolledHp"
                             data-level="{{sum id 1}}" data-dtype="Number">{{class.classLevelHealth}}</span>
