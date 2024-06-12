@@ -215,8 +215,7 @@
 .simply-sheet .tab-equipment .resource-table .flex-label img {
     margin-right: 5px;
 }
-.simply-sheet .tab-features .resource-table .flex-controls,
-.simply-sheet .tab-equipment .resource-table .flex-controls {
+.simply-sheet .resource-table .flex-controls {
     display: flex;
     justify-content:flex-end;
     padding-right: 8px;

@@ -1,0 +1,99 @@
+<div class="tab-mode">
+    <div class="modes panel">
+        <label class="medium-header">Modes</label>
+        <table class="modes-table resource-table">
+            <tbody>
+                {{#each actor.effects as |mode id|}}
+                {{#unless mode.flags.swse.itemModifier}}
+                <tr>
+                    <td class="label-cell">
+                        <div class="flex-label">
+                            <img src="{{mode.img}}" title="{{mode.name}}" width="24" height="24" />
+                            <label class="item-name">
+                                {{mode.name}}
+                            </label>
+                            {{#if mode.hasLinks}}
+                            <i class="fas fa-link" title="Has Links"></i>
+                            {{/if}}
+                        </div>
+                    </td>
+                    <td class="checkbox-cell">
+                        <input type="checkbox" {{#unless mode.disabled}}checked{{/unless}} data-type="disable"
+                            data-action="effect-control" data-effect-id="{{mode._id}}">
+                    </td>
+                    <td class="item-controls">
+                        <div class="flex-controls">
+                            <a data-type="view" data-action="effect-control" data-effect-id="{{mode._id}}"
+                                class="item-control" title="Edit Item"><i class="fas fa-edit"></i></a>
+                            <a data-type="delete" data-action="effect-control" data-effect-id="{{mode._id}}"
+                                class="item-control" title="Delete Item"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                {{/unless}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <div class="changes panel">
+        <label class="medium-header">Changes</label>
+        <table class="modes-table resource-table">
+            <tbody>
+                {{#each actor.changes as |change id|}}
+                {{#unless change.flags.swse.itemModifier}}
+                <tr data-index="{{id}}">
+                    <td class="label-cell">
+                        <div class="flex-label">
+                            <input class="direct" type="text" name="changes.{{id}}.key" value="{{change.key}}" />
+                        </div>
+                    </td>
+                    <td class="mode-select-cell">
+                        <select class="direct" name="changes.{{id}}.mode" data-dtype="Number">
+                            {{selectOptions ../modes selected=change.mode}}
+                        </select>
+                    </td>
+                    <td class="priority-input-cell">
+                        <input class="direct" type="number" name="changes.{{id}}.priority"
+                            value="{{ifThen change.priority " {{change.priority}}" "1" }}" />
+                    </td>
+                    <td class="value-input-cell">
+                        <input class="direct" type="text" name="changes.{{id}}.value" value="{{change.value}}" />
+                    </td>
+                    <td class="item-controls">
+                        <div class="flex-controls">
+                            <a class="change-control" data-action="change-control" data-action-type="delete"
+                                data-index="{{id}}"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                {{/unless}}
+                {{/each}}
+                {{#each actor.inheritedChanges as |change id|}}
+                {{#unless change.flags.swse.itemModifier}}
+                <tr data-index="inherited~{{id}}">
+                    <td class="label-cell">
+                        <div class="flex-label">
+                            <input class="direct disabled" disabled type="text" disabled value="{{change.key}}" />
+                        </div>
+                    </td>
+                    <td class="mode-select-cell">
+                        <select class="direct" disabled data-dtype="Number">
+                            {{selectOptions ../modes selected=change.mode}}
+                        </select>
+                    </td>
+                    <td class="priority-input-cell">
+                        <input class="direct disabled" disabled type="number" name="changes.{{id}}.priority"
+                            value="{{ifThen change.priority " {{change.priority}}" "1" }}" />
+                    </td>
+                    <td class="value-input-cell">
+                        <input class="direct disabled" type="text" disabled name="changes.{{id}}.value" value="{{change.value}}" />
+                    </td>
+                    <td class="item-controls">
+                    </td>
+                </tr>
+                {{/unless}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
