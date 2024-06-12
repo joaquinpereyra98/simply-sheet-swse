@@ -132,11 +132,11 @@
     font-weight: bold;
 }
 
-.simply-sheet .tab-summary .dack-score-grid {
+.simply-sheet .tab-summary .dark-score-grid {
     gap: 4px;
     margin: 5px 0;
-    grid-column: span 6 / span 6;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-column: span 5 / span 5;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .simply-sheet .tab-summary .dark-score-btn {
@@ -187,7 +187,7 @@
 }
 
 .simply-sheet .tab-summary .skill-table .highlighted-skill {
-    background-color: rgb(199, 219, 219);
+    background-color: rgb(139 215 215)
 }
 
 .simply-sheet .tab-summary .armor-table th {
@@ -258,4 +258,8 @@
     align-items: center;
     padding: 5px 10px;
     flex-direction: column;
+}
+.simply-sheet .attack-table .full-attack-row {
+    background-color: rgb(139 215 215);
+    border-bottom: solid 2px;
 }

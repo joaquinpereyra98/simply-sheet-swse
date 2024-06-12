@@ -13,8 +13,8 @@
         <tbody>
             {{#each skills as |skill id|}}
             {{#unless skill.hide}}
-            <tr class="draggable {{skill.rowColor}} row-attribute-table" data-variable="{{skill.variable}}" data-label="{{skill.label}}"
-                data-type="skill">
+            <tr class="draggable {{skill.rowColor}} row-attribute-table" data-variable="{{skill.variable}}"
+                data-label="{{skill.label}}" data-type="skill">
                 <td class="accordion-icon-row">
                     <a class="accordion-skill-button" data-id="{{id}}">
                         <i class="fa-solid fa-angle-down accordion-icon {{ifThen skill.accordionState " rotate" ""
@@ -51,11 +51,14 @@
                         <div class="grid grid-5col">
                             <div class="flex-col">
                                 <label class="small-header">Attribute</label>
-                                <select class="select-skill-attribute" name="skill.attribute">
-                                    {{!-- {{selectOptions myChoices selected=value localize=false}} --}}
+                                <select class="select-skill-attribute" data-id="{{id}}" name="actor.system.skills.{{id}}.attribute">
+                                    {{#select skill.attribute}}
+                                    {{#each ../abilities as |ability key|}}
+                                    <option value="{{key}}">{{ability.label}}</option>
+                                    {{/each}}
+                                    {{/select}}
                                 </select>
                             </div>
-
                             {{!-- <div class="background-text-container">
                                 {{toUpperCase skill.attribute}}({{skill.abilityBonus}})
                             </div> --}}

@@ -115,7 +115,9 @@ export class SimplySWSEActorSheet extends SWSEActorSheet {
     super.activateListeners(html);
 
     html.find(".dark-score-btn").click((ev) => {
-      this.actor.darkSideScore = $(ev.currentTarget).data("value");
+      const actual = this.actor.darkSideScore;
+      const value = $(ev.currentTarget).data("value");
+      this.actor.darkSideScore = actual >= value ? value - 1 : value;
     });
     html.find(".accordion-skill-button").on("click", (ev) => {
       const btn = ev.currentTarget;
@@ -132,7 +134,13 @@ export class SimplySWSEActorSheet extends SWSEActorSheet {
 
       $accordionBody.slideToggle();
     });
-    html.find(".item-control[data-action=equip-toggle]").on("click", this._onEquipToggle.bind(this))
+    html.find(".item-control[data-action=equip-toggle]").on("click", this._onEquipToggle.bind(this));
+    html.find(".select-skill-attribute").on("change", (ev) => {
+      const selector = ev.currentTarget
+      const id = selector.dataset.id;
+      const val = $(selector).val();
+      this.actor.update({ [`system.skills.${id}.attribute`]: val });
+    })
   }
   _onIncreaseItemQuantity(event) {
     event.preventDefault();

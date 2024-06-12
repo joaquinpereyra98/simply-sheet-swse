@@ -2,6 +2,14 @@
     <label class="medium-header">Attacks</label>
     <table class="attack-table resource-table">
         <tbody>
+            <tr class="row-attribute-table full-attack-row">
+                <td class="label-cell">Full Attack</td>
+                <td>
+                    <a id="fullAttack">
+                        <i class="fa-solid fa-dice-d20 fa-lg"></i>
+                    </a>
+                </td>
+            </tr>
             {{#each actor.system.attacks as |attack|}}
             {{#unless attack.hide}}
             <tr class="row-attribute-table">
