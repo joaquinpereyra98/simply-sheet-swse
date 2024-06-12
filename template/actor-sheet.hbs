@@ -7,7 +7,7 @@
         <a class="item" data-tab="features">Features</a>
         <a class="item" data-tab="equipment">Equipment</a>
         <a class="item" data-tab="modes">Modes</a>
-        <a class="item" data-tab="description">Notes</a>
+        <a class="item" data-tab="notes">Notes</a>
         <a class="item" data-tab="settings">Settings</a>
     </nav>
     <section class="sheet-body">
@@ -23,5 +23,12 @@
         <div class="tab mode" data-group="primary" data-tab="modes">
             {{> 'modules/simply-sheet-swse/template/parts/mode-tab.hbs'}}
         </div>
+        <div class="tab description" data-group="primary" data-tab="notes">
+            {{> 'modules/simply-sheet-swse/template/parts/notes-tab.hbs'}}
+        </div>
+        <div class="tab settings" data-group="primary" data-tab="settings">
+            {{> 'modules/simply-sheet-swse/template/parts/settings-tab.hbs'}}
+        </div>
+        
     </section>
 </form> 

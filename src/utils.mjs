@@ -5,6 +5,8 @@ export async function prepareTemplates(){
         "modules/simply-sheet-swse/template/parts/features-tab.hbs",
         "modules/simply-sheet-swse/template/parts/equipment-tab.hbs",
         "modules/simply-sheet-swse/template/parts/mode-tab.hbs",
+        "modules/simply-sheet-swse/template/parts/notes-tab.hbs",
+        "modules/simply-sheet-swse/template/parts/settings-tab.hbs",
         "modules/simply-sheet-swse/template/parts/summary-tab-parts/ability-score-panel.hbs",
         "modules/simply-sheet-swse/template/parts/summary-tab-parts/defence-panel.hbs",
         "modules/simply-sheet-swse/template/parts/summary-tab-parts/hit-point-panel.hbs",

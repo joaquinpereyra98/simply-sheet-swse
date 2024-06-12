@@ -1,0 +1,75 @@
+<div class="tab-notes flex">
+    <div class="flex-col right-column">
+        <div class="affiliations panel">
+            <div class="flex flex-between">
+                <label class="medium-header">Affiliations</label>
+                <div class="headers-buttons flex-row flex-between padding-3">
+                    <a class="fas fa-circle-plus" data-action="create" data-action-type="affiliation"
+                        title="Create New Affiliation"></a>
+                    <a data-action="compendium" data-type="Item" data-filter="-type:affiliation" title="Affiliations"><i
+                            class="fas fa-folder-plus"></i></a>
+                </div>
+            </div>
+            <table class="equipment-table resource-table">
+                {{#each actor.affiliations as |item|}}
+                <tbody>
+                    <tr class="row-attribute-table item" data-item-id="{{item.id}}">
+                        <td class="label-cell">
+                            <div class="flex-label">
+                                <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+                                <label class="item-name">
+                                    {{item.name}}
+                                </label>
+                            </div>
+                        </td>
+                        <td class="item-controls">
+                            <div class="flex-controls">
+                                <a data-action="view" class="item-control" title="Edit Item"><i
+                                        class="fas fa-edit fa-sm"></i></a>
+                                <a class="item-control item-delete" title="Delete Item"><i
+                                        class="fas fa-trash fa-sm"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                {{/each}}
+            </table>
+        </div>
+        <div class="languages panel">
+            <div class="flex flex-between">
+            <label class="medium-header">Languages</label>
+            <div class="headers-buttons flex-row flex-between padding-3">
+                <a class="fas fa-circle-plus" data-action="create" data-action-type="language"
+                    title="Create New Language"></a>
+            </div>
+            </div>
+            <table class="equipment-table resource-table">
+                {{#each actor.languages as |item|}}
+                <tbody>
+                    <tr class="row-attribute-table item" data-item-id="{{item.id}}">
+                        <td class="label-cell">
+                            <div class="flex-label">
+                                <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+                                <label class="item-name">
+                                    {{item.name}}
+                                </label>
+                            </div>
+                        </td>
+                        <td class="item-controls">
+                            <div class="flex-controls">
+                                <a data-action="view" class="item-control" title="Edit Item"><i
+                                        class="fas fa-edit fa-sm"></i></a>
+                                <a class="item-control item-delete" title="Delete Item"><i
+                                        class="fas fa-trash fa-sm"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+    <div class="description panel">
+        {{editor actor.system.description target="system.description" button=true owner=owner editable=editable}}
+    </div>
+</div>

@@ -1,8 +1,12 @@
 <div class="defence panel">
-    <label class="medium-header">
-        Defense
-        <a data-action="to-chat" data-action-type="defense" title="Share"><i class="fa-solid fa-comment"></i></a>
-    </label>
+    <div class="flex flex-between">
+        <label class="medium-header">Defences</label>
+        <div class="headers-buttons flex-row flex-between padding-3">
+            <a data-action="to-chat" data-action-type="defense" title="Share">
+                <i class="fa-solid fa-comment fa-lg"></i>
+            </a>
+        </div>
+    </div>
     {{#each actor.system.defense as |def id|}}
     {{#unless def.skip}}
     {{#if def.defenseBlock}}

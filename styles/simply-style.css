@@ -247,3 +247,15 @@
 .simply-sheet .tab-equipment .equipament-grid {
     margin-top: 0px;
 }
+.simply-sheet .tab-notes .right-column {
+    width: 40%
+}
+.simply-sheet .tab-notes .description.panel{
+    min-width: 58%;
+}
+.simply-sheet .tab-settings .panel{
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    flex-direction: column;
+}
