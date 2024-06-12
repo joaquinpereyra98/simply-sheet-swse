@@ -1,4 +1,5 @@
 import { SWSEActorSheet } from "../../../../systems/swse/module/actor/actor-sheet.mjs";
+import { createAttackDialog } from "../utils.mjs";
 export class SimplySWSEActorSheet extends SWSEActorSheet {
   /** @override */
   static get defaultOptions() {
@@ -30,8 +31,8 @@ export class SimplySWSEActorSheet extends SWSEActorSheet {
     this.prepareSkills(context);
     this.prepareBeastComponent(context);
     this.prepareForcePowers(context);
-    this.prepareEquipment(context)
-    
+    this.prepareEquipment(context);
+
     return context;
   }
   /**
@@ -67,26 +68,27 @@ export class SimplySWSEActorSheet extends SWSEActorSheet {
       speciesTypes,
       specialQualities,
     };
-    context.beastCompLabels = Object.fromEntries(Object.keys(context.beastComp).map((k) => {
+    context.beastCompLabels = Object.fromEntries(
+      Object.keys(context.beastComp).map((k) => {
         return [k, k.replace(/([A-Z])/g, " $1").capitalize()];
-      }));
+      })
+    );
   }
   prepareForcePowers(context) {
-    const { powers, secrets, techniques, regimens } =
-    this.actor;
+    const { powers, secrets, techniques, regimens } = this.actor;
 
-  context.forcePowers = {
-    forcePower: powers,
-    forceSecret: secrets,
-    forceTechnique: techniques,
-    forceRegimen: regimens,
-  };
-  context.forcePowersLabels = {
-    forceSecret: "Force Secrets",
-    forceTechnique: "Force Techniques",
-    forceRegimen: "Force Regimens",
-    forcePower: "Force Powers"
-  }
+    context.forcePowers = {
+      forcePower: powers,
+      forceSecret: secrets,
+      forceTechnique: techniques,
+      forceRegimen: regimens,
+    };
+    context.forcePowersLabels = {
+      forceSecret: "Force Secrets",
+      forceTechnique: "Force Techniques",
+      forceRegimen: "Force Regimens",
+      forcePower: "Force Powers",
+    };
   }
   prepareEquipment(context) {
     context.equipment = {
@@ -94,21 +96,21 @@ export class SimplySWSEActorSheet extends SWSEActorSheet {
         label: "Weapons",
         items: this.actor.weapons,
         compendium: "swse.weapons",
-        itemType: "weapon"
+        itemType: "weapon",
       },
-      armors:{
+      armors: {
         label: "Armors",
         items: this.actor.armors,
         compendium: "swse.armor",
-        itemType: "armor"
+        itemType: "armor",
       },
-      equipment:{
+      equipment: {
         label: "Equipments",
         items: this.actor.inventory,
         compendium: "swse.equipament",
-        itemType: "equipment"
-      }
-    }
+        itemType: "equipment",
+      },
+    };
   }
   /** @override */
   activateListeners(html) {
@@ -134,32 +136,44 @@ export class SimplySWSEActorSheet extends SWSEActorSheet {
 
       $accordionBody.slideToggle();
     });
-    html.find(".item-control[data-action=equip-toggle]").on("click", this._onEquipToggle.bind(this));
+    html
+      .find(".item-control[data-action=equip-toggle]")
+      .on("click", this._onEquipToggle.bind(this));
     html.find(".select-skill-attribute").on("change", (ev) => {
-      const selector = ev.currentTarget
+      const selector = ev.currentTarget;
       const id = selector.dataset.id;
       const val = $(selector).val();
       this.actor.update({ [`system.skills.${id}.attribute`]: val });
-    })
+    });
+    html
+      .find("[data-action=create-attack]")
+      .on("click", this._onCreateAttack.bind(this));
   }
   _onIncreaseItemQuantity(event) {
     event.preventDefault();
     const li = event.currentTarget.closest(".item");
     const item = this.actor.items.get(li.dataset.itemId);
-    if(item.system.quantity === undefined || item.system.quantity === null){
-      item.update({"system.quantity": 1});
-    } else{
-      item.update({"system.quantity": item.system.quantity + 1})
+    if (item.system.quantity === undefined || item.system.quantity === null) {
+      item.update({ "system.quantity": 1 });
+    } else {
+      item.update({ "system.quantity": item.system.quantity + 1 });
     }
-}
-_onEquipToggle(event) {
-  event.preventDefault();
-  const li = event.currentTarget.closest(".item");
-  const item = this.actor.items.get(li.dataset.itemId);
-  if (!item.system.equipped) {
-    item.equip("equipped");
-  } else {
-    item.unequip();
   }
-}
+  _onEquipToggle(event) {
+    event.preventDefault();
+    const li = event.currentTarget.closest(".item");
+    const item = this.actor.items.get(li.dataset.itemId);
+    if (!item.system.equipped) {
+      item.equip("equipped");
+    } else {
+      item.unequip();
+    }
+  }
+  async _onCreateAttack(event) {
+    event.preventDefault();
+    const itemData = await createAttackDialog()
+    console.log(itemData);
+    
+    return this.actor.createEmbeddedDocuments("Item", [itemData]);
+  }
 }

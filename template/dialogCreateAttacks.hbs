@@ -1,0 +1,45 @@
+<form>
+    <div class="inputs-dialog">
+        <div class="inputs-container flex-col">
+            <div class="name-container">
+                <label class="small-header">{{localize "Name"}}(*):</label>
+                <input type="text" name="name" placeholder="New Weapon" data-type="string" value="{{name}}">
+            </div>
+            <div class="flex-row">
+                <div class="input-container">
+                    <label class="small-header">Type:(*)</label>
+                    <div class="unlabeled-input">
+                        <input type="text" name="type" data-type="string" value="weapon" disabled>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label class="small-header">SubType:(*)</label>
+                    <div class="unlabeled-input">
+                        <select name="subtype">
+                            {{#each weaponGroup as |category categoryLabel|}}
+                                <option disabled>{{categoryLabel}}</option>
+                                {{#each category as |subType|}}
+                                <option value="{{subType}}">{{subType}}</option>
+                                {{/each}}
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="input-container">
+                    <label class="small-header">Damage Formula:</label>
+                    <div class="unlabeled-input">
+                        <input type="text" name="damage" data-type="string" value="{{damage}}">
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label class="small-header">Type Damage:</label>
+                    <div class="unlabeled-input">
+                        <input type="text" name="damageType" data-type="string" value="{{damageType}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

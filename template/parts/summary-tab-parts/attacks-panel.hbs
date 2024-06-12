@@ -1,5 +1,10 @@
 <div class="attacks panel">
-    <label class="medium-header">Attacks</label>
+    <div class="flex flex-between">
+                <label class="medium-header">Attacks</label>
+                <div class="headers-buttons flex-row flex-between padding-3">
+                    <a class="fas fa-circle-plus" data-action="create-attack" title="Create New Attack"></a>
+                </div>
+            </div>
     <table class="attack-table resource-table">
         <tbody>
             <tr class="row-attribute-table full-attack-row">
@@ -25,6 +30,20 @@
                 </td>
             </tr>
             {{/unless}}
+            {{/each}}
+            {{#each simplyAttacks as |attack|}}
+            <tr class="row-attribute-table">
+                <td class="label-cell">{{attack.name}}</td>
+                <td>
+                    <div class="btn-roll-attack {{#if
+                attack.provider}}vehicle {{/if}}attack"
+                        data-attacks="[{{attack.toJSONString}}]" data-item-id="{{attack.itemId}}"
+                        data-provider-id="{{attack.providerId}}" data-actor-id="{{attack.actorId}}"
+                        data-label="{{attack.name}}" data-img="{{attack.img}}">
+                        <i class="fa-solid fa-dice-d20 fa-lg"></i>
+                        </div>
+                </td>
+            </tr>
             {{/each}}
         </tbody>
     </table>
