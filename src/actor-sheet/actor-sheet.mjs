@@ -171,9 +171,7 @@ export class SimplySWSEActorSheet extends SWSEActorSheet {
   }
   async _onCreateAttack(event) {
     event.preventDefault();
-    const itemData = await createAttackDialog()
-    console.log(itemData);
-    
+    const itemData = await createAttackDialog();
     return this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 }

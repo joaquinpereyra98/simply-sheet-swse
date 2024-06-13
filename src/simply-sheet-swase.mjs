@@ -6,4 +6,8 @@ Hooks.on("init", function() {
         makeDefault: true,
         label: "SIMPLY-SHEET-SWASE.SheetLabel",
       });
+      CONFIG.debug.hooks=true;
+});
+Hooks.on("preCreateActor", (document, data, options, userId) => {
+  document.updateSource({['system.ignorePrerequisites']: true});
 });
