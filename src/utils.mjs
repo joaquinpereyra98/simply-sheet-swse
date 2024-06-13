@@ -28,11 +28,11 @@ export async function prepareTemplates() {
     "modules/simply-sheet-swse/template/parts/features-tab-parts/force-panel.hbs",
   ]);
 }
-const weaponGroup = {
+export async function createAttackDialog() {
+  const weaponGroup = {
     "Ranged Weapons": ["Heavy Weapons", "Pistols", "Rifles", "Simple Ranged Weapons", "Exotic Ranged Weapons", "Ranged Natural Weapons", 'Weapon Systems'],
     "Melee Weapons": ["Advanced Melee Weapons", "Lightsabers", "Simple Melee Weapons", "Exotic Melee Weapons", "Melee Natural Weapons"]
 };
-export async function createAttackDialog() {
   const contentHtml = await renderTemplate(
       "modules/simply-sheet-swse/template/dialogCreateAttacks.hbs", {weaponGroup}
   );

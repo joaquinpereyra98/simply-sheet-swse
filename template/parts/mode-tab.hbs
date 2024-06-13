@@ -1,6 +1,9 @@
 <div class="tab-mode">
     <div class="modes panel">
-        <label class="medium-header">Modes</label>
+        <div class="flex flex-between">
+            <label class="medium-header">Modes</label>
+            <a class="control" data-action="effect-control" data-type="add-mode"><i class="far fa-circle-plus"></i></a>
+        </div>
         <table class="modes-table resource-table">
             <tbody>
                 {{#each actor.effects as |mode id|}}
@@ -86,7 +89,8 @@
                             value="{{ifThen change.priority " {{change.priority}}" "1" }}" />
                     </td>
                     <td class="value-input-cell">
-                        <input class="direct disabled" type="text" disabled name="changes.{{id}}.value" value="{{change.value}}" />
+                        <input class="direct disabled" type="text" disabled name="changes.{{id}}.value"
+                            value="{{change.value}}" />
                     </td>
                     <td class="item-controls">
                     </td>
