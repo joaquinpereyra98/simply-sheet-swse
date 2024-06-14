@@ -20,11 +20,11 @@
                     <input class="input" id="classSummary" type="text" value="{{actor.system.classSummary}}"
                         placeholder="" disabled />
                 </div>
-                <div class="labeled-input" {{#if actor.species}} data-item-id="{{actor.species.id}}"
+                <div class="labeled-input item" {{#if actor.species}} data-item-id="{{actor.species.id}}"
                     {{else}}data-action="compendium" data-type="Item" data-filter="-type:species" {{/if}}>
                     <label for="species" class="text">Species</label>
-                    <input class="input" id="species" type="text"
-                        value="{{#if actor.species}}{{actor.species.name}}{{else}}Add Species{{/if}}" placeholder=""
+                    <input class="input item" id="species" type="text"
+                        value="{{#if actor.species}}{{actor.species.name}}{{else}}Add Species{{/if}}"
                         disabled />
                     {{#if actor.species}}
                     <div class="control-1">
@@ -32,7 +32,7 @@
                                 class="fas fa-eye"></i></a>
                     </div>
                     <div class="control-0">
-                        <a class="" data-action="delete" data-item-id="{{actor.species.id}}" title="delete item"><i
+                        <a class="item" data-action="delete" data-item-id="{{actor.species.id}}" title="delete item"><i
                                 class="fas fa-trash"></i></a>
                     </div>
                     {{else}}

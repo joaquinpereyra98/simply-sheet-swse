@@ -2,7 +2,7 @@
     <div class="modes panel">
         <div class="flex flex-between">
             <label class="medium-header">Modes</label>
-            <a class="control" data-action="effect-control" data-type="add-mode"><i class="far fa-circle-plus"></i></a>
+            <a class="control padding-3" data-action="effect-control" data-type="add-mode"><i class="fas fa-circle-plus"></i></a>
         </div>
         <table class="modes-table resource-table">
             <tbody>
@@ -39,7 +39,11 @@
         </table>
     </div>
     <div class="changes panel">
-        <label class="medium-header">Changes</label>
+        <div class="flex flex-between">
+            <label class="medium-header">Changes</label>
+            <a class="control padding-3" data-action="change-control" data-action-type="add"><i
+                    class="fas fa-circle-plus"></i></a>
+        </div>
         <table class="modes-table resource-table">
             <tbody>
                 {{#each actor.changes as |change id|}}

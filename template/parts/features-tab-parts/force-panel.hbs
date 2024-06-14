@@ -29,20 +29,18 @@
                     {{#if (eq item.type "forcePower")}}
                     <td>
                         <div class="flex-flex-between">
-                            {{#times item.system.quantity}}
-                            <input data-action="toggle-use" type="checkbox" data-id="{{../item.id}} uses {{this}}"
-                                data-name="system.uses.{{this}}" {{#if (lookup ../item.system.uses
-                                this)}}checked{{/if}} />
-                            {{/times}}
+                            {{#each item.useTracker as |value key|}}
+                            <input class="uses-force-checkbox" type="checkbox" data-key="{{key}}" value="{{value}}" data-dtype="Boolean" {{checked value}}>
+                            {{/each}}
                         </div>
                     </td>
                     {{/if}}
                     <td class="item-controls">
                         <div class="flex-controls">
                             {{#if (eq item.type "forcePower")}}
-                            <a data-action="increase-quantity" class="item-control" title="Increase Quantity"><i
+                            <a data-action="increase-uses" data-item-id="{{item.id}}" class="item-control" title="Increase Quantity"><i
                                     class="fas fa-plus"></i></a>
-                            <a data-action="decrease-quantity" class="item-control" title="Decrease Quantity"><i
+                            <a data-action="decrease-uses" data-item-id="{{item.id}}" class="item-control" title="Decrease Quantity"><i
                                     class="fas fa-minus"></i></a>
                             {{/if}}
                             <a data-action="view" class="item-control" title="Edit Item"><i class="fas fa-edit"></i></a>

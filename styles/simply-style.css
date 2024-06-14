@@ -68,7 +68,14 @@
     font-size: larger;
     padding: 5px;
 }
-
+.simply-sheet .sheet-header .labeled-input.item .control-1,
+.simply-sheet .sheet-header .labeled-input.item .control-0 {
+    display: none;
+}
+.simply-sheet .sheet-header .labeled-input.item:hover .control-1,
+.simply-sheet .sheet-header .labeled-input.item:hover .control-0 {
+    display: block;
+}
 .simply-sheet .tab-summary {
     display: flex;
     align-items: flex-start;

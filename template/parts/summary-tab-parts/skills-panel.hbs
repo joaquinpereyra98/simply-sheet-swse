@@ -26,12 +26,10 @@
                     <a href="{{skill.link}}">{{skill.label}}</a>
                 </td>
                 <td {{!trained-checbox}}>
-                    {{#if skill.isClass}}
                     <label title="trained skills get an additional +5">
-                        <input class="skill" type="checkbox" data-id="{{id}}" data-name="system.skills.{{id}}.trained"
-                            {{#if skill.trained}}checked{{/if}} />
+                        <input name="system.skills.{{id}}.trained" type="checkbox" value="{{skill.trained}}" {{checked
+                            skill.trained}} data-dtype="Boolean">
                     </label>
-                    {{/if}}
                 </td>
                 <td{{!Custom Bonus}}>
                     <input class="plain total-skill-input" name="system.skills.{{id}}.manualBonus" type="number"
@@ -51,7 +49,8 @@
                         <div class="grid grid-5col">
                             <div class="flex-col">
                                 <label class="small-header">Attribute</label>
-                                <select class="select-skill-attribute" data-id="{{id}}" name="actor.system.skills.{{id}}.attribute">
+                                <select class="select-skill-attribute" data-id="{{id}}"
+                                    name="actor.system.skills.{{id}}.attribute">
                                     {{#select skill.attribute}}
                                     {{#each ../abilities as |ability key|}}
                                     <option value="{{key}}">{{ability.label}}</option>
