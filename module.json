@@ -2,7 +2,7 @@
     "id": "simply-sheet-swse",
     "title": "Simply Sheet for Star War: Saga Edition",
     "description": "",
-    "version": "0.5.4",
+    "version": "0.5.5",
     "compatibility": {
         "minimun": "11",
         "verified": "11"
@@ -16,7 +16,7 @@
         }
     ],
     "url": "https://github.com/joaquinpereyra98/simply-sheet-swse",
-    "download": "https://github.com/joaquinpereyra98/simply-sheet-swse/releases/download/v0.5.4/module.zip",
+    "download": "https://github.com/joaquinpereyra98/simply-sheet-swse/releases/download/v0.5.5/module.zip",
     "manifest": "https://github.com/joaquinpereyra98/simply-sheet-swse/releases/latest/download/module.json",
     "readme": "README.md",
     "relationships": {

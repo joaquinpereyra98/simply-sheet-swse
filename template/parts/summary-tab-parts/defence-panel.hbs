@@ -34,9 +34,15 @@
             </div>
             <div class="flex-col">
                 <label class=" small-header">Ability</label>
-                <div class="unlabeled-input">
-                    <input class="input" type="text" value="{{def.abilityBonus}}" disabled />
-                </div>
+                <select class="select-defense-attribute" data-id="{{id}}" name="">
+                    {{#select def.attributeBonus}}
+                    {{#if (eq id "will")}}
+                    {{/if}}
+                    {{#each ../abilities as |ability key|}}
+                    <option value="{{key}}">{{ability.label}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
             </div>
             <div class="flex-col">
                 <label class=" small-header">Class</label>
